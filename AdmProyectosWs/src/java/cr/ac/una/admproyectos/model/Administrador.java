@@ -85,7 +85,7 @@ public class Administrador implements Serializable {
         this.admId = admId;
     }
 
-    public Administrador(BigDecimal admId, String aDMNombre, String aDMPApellido, String aDMSApellido, String aDMCedula, String aDMCorreo, String aDMUsuario, String aDMContrasena, String aDMEstado, BigInteger aDMVersion) {
+    public Administrador(BigDecimal admId, String aDMNombre, String aDMPApellido, String aDMSApellido, String aDMCedula, String aDMCorreo, String aDMUsuario, String aDMContrasena, String aDMEstado) {
         this.admId = admId;
         this.aDMNombre = aDMNombre;
         this.aDMPApellido = aDMPApellido;
@@ -95,7 +95,22 @@ public class Administrador implements Serializable {
         this.aDMUsuario = aDMUsuario;
         this.aDMContrasena = aDMContrasena;
         this.aDMEstado = aDMEstado;
-        this.aDMVersion = aDMVersion;
+    }
+    
+    public Administrador(AdministradorDto administrador){
+        this.admId = administrador.getAdmId();
+        actualizarAdministrador(administrador);
+    }
+    
+    public void actualizarAdministrador(AdministradorDto administrador){
+        this.aDMNombre = administrador.getaDMNombre();
+        this.aDMPApellido = administrador.getaDMPApellido();
+        this.aDMSApellido = administrador.getaDMSApellido();
+        this.aDMCedula = administrador.getaDMCedula();
+        this.aDMCorreo = administrador.getaDMCorreo();
+        this.aDMUsuario = administrador.getaDMUsuario();
+        this.aDMContrasena = administrador.getaDMContrasena();
+        this.aDMEstado = administrador.getaDMEstado();
     }
 
     public BigDecimal getAdmId() {
