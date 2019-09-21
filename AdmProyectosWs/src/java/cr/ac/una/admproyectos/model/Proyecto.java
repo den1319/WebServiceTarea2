@@ -6,8 +6,6 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -61,7 +59,7 @@ public class Proyecto implements Serializable {
     
     @Basic(optional = false)
     @Column(name = "PRY_ID")
-    private BigDecimal pryId;
+    private Long pryId;
     @Basic(optional = false)
     @Column(name = "PRY_NombreProyecto")
     private String pRYNombreProyecto;
@@ -102,7 +100,7 @@ public class Proyecto implements Serializable {
     private String pRYEstado;
     @Basic(optional = false)
     @Column(name = "PRY_Version")
-    private BigInteger pRYVersion;
+    private Long pRYVersion;
     @OneToMany(mappedBy = "pryId", fetch = FetchType.LAZY)
     private List<Seguimiento> seguimientoList;
     @OneToMany(mappedBy = "pryId", fetch = FetchType.LAZY)
@@ -111,11 +109,11 @@ public class Proyecto implements Serializable {
     public Proyecto() {
     }
 
-    public Proyecto(BigDecimal pryId) {
+    public Proyecto(Long pryId) {
         this.pryId = pryId;
     }
 
-    public Proyecto(BigDecimal pryId, String pRYNombreProyecto, String pRYNomPat, String pRYNomLiderUs, String pRYNomLiderTec, String pRYCorreoPat, String pRYCorreoLU, String pRYCorreoLT, Date pRYFechaIniPlan, Date pRYFechaFinPlan, String pRYEstado, BigInteger pRYVersion) {
+    public Proyecto(Long pryId, String pRYNombreProyecto, String pRYNomPat, String pRYNomLiderUs, String pRYNomLiderTec, String pRYCorreoPat, String pRYCorreoLU, String pRYCorreoLT, Date pRYFechaIniPlan, Date pRYFechaFinPlan, String pRYEstado, Long pRYVersion) {
         this.pryId = pryId;
         this.pRYNombreProyecto = pRYNombreProyecto;
         this.pRYNomPat = pRYNomPat;
@@ -129,12 +127,32 @@ public class Proyecto implements Serializable {
         this.pRYEstado = pRYEstado;
         this.pRYVersion = pRYVersion;
     }
+    
+    public Proyecto(ProyectoDto proyecto){
+        this.pryId = proyecto.getPryId();
+        actualizarProyecto(proyecto);
+    }
+    
+    public void actualizarProyecto(ProyectoDto proyecto){
+        this.pRYNombreProyecto = proyecto.getpRYNombreProyecto();
+        this.pRYNomPat = proyecto.getpRYNomPat();
+        this.pRYNomLiderUs = proyecto.getpRYNomLiderUs();
+        this.pRYNomLiderTec = proyecto.getpRYNomLiderTec();
+        this.pRYCorreoPat = proyecto.getpRYCorreoPat();
+        this.pRYCorreoLU = proyecto.getpRYCorreoLU();
+        this.pRYCorreoLT = proyecto.getpRYCorreoLT();
+        this.pRYFechaIniPlan = proyecto.getpRYFechaIniPlan();
+        this.pRYFechaFinPlan = proyecto.getpRYFechaFinPlan();
+        this.pRYFechaIniReal = proyecto.getpRYFechaIniReal();
+        this.pRYFechaFinReal = proyecto.getpRYFechaFinReal();
+        this.pRYEstado = proyecto.getpRYEstado();
+    }
 
-    public BigDecimal getPryId() {
+    public Long getPryId() {
         return pryId;
     }
 
-    public void setPryId(BigDecimal pryId) {
+    public void setPryId(Long pryId) {
         this.pryId = pryId;
     }
 
@@ -234,11 +252,11 @@ public class Proyecto implements Serializable {
         this.pRYEstado = pRYEstado;
     }
 
-    public BigInteger getPRYVersion() {
+    public Long getPRYVersion() {
         return pRYVersion;
     }
 
-    public void setPRYVersion(BigInteger pRYVersion) {
+    public void setPRYVersion(Long pRYVersion) {
         this.pRYVersion = pRYVersion;
     }
 

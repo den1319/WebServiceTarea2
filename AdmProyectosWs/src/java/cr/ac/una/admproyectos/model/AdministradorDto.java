@@ -5,10 +5,6 @@
  */
 package cr.ac.una.admproyectos.model;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -22,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 
 public class AdministradorDto {
-    private BigDecimal admId;
+    private Long admId;
     private String aDMNombre;
     private String aDMPApellido;
     private String aDMSApellido;
@@ -47,11 +43,11 @@ public class AdministradorDto {
         this.aDMUsuario = administrador.getADMUsuario();
     }
 
-    public BigDecimal getAdmId() {
+    public Long getAdmId() {
         return admId;
     }
 
-    public void setAdmId(BigDecimal admId) {
+    public void setAdmId(Long admId) {
         this.admId = admId;
     }
 

@@ -6,8 +6,6 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,7 +47,7 @@ public class Administrador implements Serializable {
     
     @Basic(optional = false)
     @Column(name = "ADM_ID")
-    private BigDecimal admId;
+    private Long admId;
     @Basic(optional = false)
     @Column(name = "ADM_Nombre")
     private String aDMNombre;
@@ -76,16 +74,16 @@ public class Administrador implements Serializable {
     private String aDMEstado;
     @Basic(optional = false)
     @Column(name = "ADM_Version")
-    private BigInteger aDMVersion;
+    private Long aDMVersion;
 
     public Administrador() {
     }
 
-    public Administrador(BigDecimal admId) {
+    public Administrador(Long admId) {
         this.admId = admId;
     }
 
-    public Administrador(BigDecimal admId, String aDMNombre, String aDMPApellido, String aDMSApellido, String aDMCedula, String aDMCorreo, String aDMUsuario, String aDMContrasena, String aDMEstado) {
+    public Administrador(Long admId, String aDMNombre, String aDMPApellido, String aDMSApellido, String aDMCedula, String aDMCorreo, String aDMUsuario, String aDMContrasena, String aDMEstado) {
         this.admId = admId;
         this.aDMNombre = aDMNombre;
         this.aDMPApellido = aDMPApellido;
@@ -113,11 +111,11 @@ public class Administrador implements Serializable {
         this.aDMEstado = administrador.getaDMEstado();
     }
 
-    public BigDecimal getAdmId() {
+    public Long getAdmId() {
         return admId;
     }
 
-    public void setAdmId(BigDecimal admId) {
+    public void setAdmId(Long admId) {
         this.admId = admId;
     }
 
@@ -185,11 +183,11 @@ public class Administrador implements Serializable {
         this.aDMEstado = aDMEstado;
     }
 
-    public BigInteger getADMVersion() {
+    public Long getADMVersion() {
         return aDMVersion;
     }
 
-    public void setADMVersion(BigInteger aDMVersion) {
+    public void setADMVersion(Long aDMVersion) {
         this.aDMVersion = aDMVersion;
     }
 

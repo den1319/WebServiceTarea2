@@ -6,8 +6,6 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -56,7 +54,7 @@ public class Actividad implements Serializable {
     
     @Basic(optional = false)
     @Column(name = "ACT_ID")
-    private BigDecimal actId;
+    private Long actId;
     @Basic(optional = false)
     @Column(name = "ACT_Descripcion")
     private String aCTDescripcion;
@@ -82,13 +80,13 @@ public class Actividad implements Serializable {
     private Date aCTFechaFinReal;
     @Basic(optional = false)
     @Column(name = "ACT_Version")
-    private BigInteger aCTVersion;
+    private Long aCTVersion;
     @Basic(optional = false)
     @Column(name = "ACT_CorreoEncargado")
     private String aCTCorreoEncargado;
     @Basic(optional = false)
     @Column(name = "ACT_Orden")
-    private BigInteger aCTOrden;
+    private Long aCTOrden;
     @JoinColumn(name = "PRY_ID", referencedColumnName = "PRY_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Proyecto pryId;
@@ -96,11 +94,11 @@ public class Actividad implements Serializable {
     public Actividad() {
     }
 
-    public Actividad(BigDecimal actId) {
+    public Actividad(Long actId) {
         this.actId = actId;
     }
 
-    public Actividad(BigDecimal actId, String aCTDescripcion, String aCTNomEncargado, String aCTEstado, Date aCTFechaIniPlan, Date aCTFechaFinPlan, BigInteger aCTVersion, String aCTCorreoEncargado, BigInteger aCTOrden) {
+    public Actividad(Long actId, String aCTDescripcion, String aCTNomEncargado, String aCTEstado, Date aCTFechaIniPlan, Date aCTFechaFinPlan, Long aCTVersion, String aCTCorreoEncargado, Long aCTOrden) {
         this.actId = actId;
         this.aCTDescripcion = aCTDescripcion;
         this.aCTNomEncargado = aCTNomEncargado;
@@ -111,12 +109,29 @@ public class Actividad implements Serializable {
         this.aCTCorreoEncargado = aCTCorreoEncargado;
         this.aCTOrden = aCTOrden;
     }
+    
+    public Actividad(ActividadDto actividad){
+        this.actId = actividad.getActId();
+        actualizarActividad(actividad);
+    }
+    
+    public void actualizarActividad(ActividadDto actividad){
+        this.aCTDescripcion = actividad.getaCTDescripcion();
+        this.aCTNomEncargado = actividad.getaCTNomEncargado();
+        this.aCTEstado = actividad.getaCTEstado();
+        this.aCTFechaIniPlan = actividad.getaCTFechaIniPlan();
+        this.aCTFechaFinPlan = actividad.getaCTFechaFinPlan();
+        this.aCTFechaIniReal = actividad.getaCTFechaIniReal();
+        this.aCTFechaFinReal = actividad.getaCTFechaFinReal();
+        this.aCTCorreoEncargado = actividad.getaCTCorreoEncargado();
+        this.aCTOrden = actividad.getaCTOrden();
+    }
 
-    public BigDecimal getActId() {
+    public Long getActId() {
         return actId;
     }
 
-    public void setActId(BigDecimal actId) {
+    public void setActId(Long actId) {
         this.actId = actId;
     }
 
@@ -176,11 +191,11 @@ public class Actividad implements Serializable {
         this.aCTFechaFinReal = aCTFechaFinReal;
     }
 
-    public BigInteger getACTVersion() {
+    public Long getACTVersion() {
         return aCTVersion;
     }
 
-    public void setACTVersion(BigInteger aCTVersion) {
+    public void setACTVersion(Long aCTVersion) {
         this.aCTVersion = aCTVersion;
     }
 
@@ -192,11 +207,11 @@ public class Actividad implements Serializable {
         this.aCTCorreoEncargado = aCTCorreoEncargado;
     }
 
-    public BigInteger getACTOrden() {
+    public Long getACTOrden() {
         return aCTOrden;
     }
 
-    public void setACTOrden(BigInteger aCTOrden) {
+    public void setACTOrden(Long aCTOrden) {
         this.aCTOrden = aCTOrden;
     }
 

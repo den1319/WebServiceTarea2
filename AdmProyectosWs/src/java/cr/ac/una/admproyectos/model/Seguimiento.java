@@ -6,8 +6,6 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -50,7 +48,7 @@ public class Seguimiento implements Serializable {
     
     @Basic(optional = false)
     @Column(name = "SEG_ID")
-    private BigDecimal segId;
+    private Long segId;
     @Basic(optional = false)
     @Column(name = "SEG_Fecha")
     @Temporal(TemporalType.TIMESTAMP)
@@ -60,7 +58,7 @@ public class Seguimiento implements Serializable {
     private double sEGAvance;
     @Basic(optional = false)
     @Column(name = "SEG_Version")
-    private BigInteger sEGVersion;
+    private Long sEGVersion;
     @JoinColumn(name = "PRY_ID", referencedColumnName = "PRY_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Proyecto pryId;
@@ -68,22 +66,32 @@ public class Seguimiento implements Serializable {
     public Seguimiento() {
     }
 
-    public Seguimiento(BigDecimal segId) {
+    public Seguimiento(Long segId) {
         this.segId = segId;
     }
 
-    public Seguimiento(BigDecimal segId, Date sEGFecha, double sEGAvance, BigInteger sEGVersion) {
+    public Seguimiento(Long segId, Date sEGFecha, double sEGAvance, Long sEGVersion) {
         this.segId = segId;
         this.sEGFecha = sEGFecha;
         this.sEGAvance = sEGAvance;
         this.sEGVersion = sEGVersion;
     }
+    
+    public Seguimiento(SeguimientoDto seguimiento){
+        this.segId = seguimiento.getSegId();
+        actualizarSeguimiento(seguimiento);
+    }
+    
+    public void actualizarSeguimiento(SeguimientoDto seguimiento){
+        this.sEGFecha = seguimiento.getsEGFecha();
+        this.sEGAvance = seguimiento.getsEGAvance();
+    }
 
-    public BigDecimal getSegId() {
+    public Long getSegId() {
         return segId;
     }
 
-    public void setSegId(BigDecimal segId) {
+    public void setSegId(Long segId) {
         this.segId = segId;
     }
 
@@ -103,11 +111,11 @@ public class Seguimiento implements Serializable {
         this.sEGAvance = sEGAvance;
     }
 
-    public BigInteger getSEGVersion() {
+    public Long getSEGVersion() {
         return sEGVersion;
     }
 
-    public void setSEGVersion(BigInteger sEGVersion) {
+    public void setSEGVersion(Long sEGVersion) {
         this.sEGVersion = sEGVersion;
     }
 
