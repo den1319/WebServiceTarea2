@@ -5,10 +5,14 @@
  */
 package cr.ac.una.admproyectos.model;
 
+import cr.ac.una.admproyectos.util.LocalDateAdapter;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -27,11 +31,16 @@ public class ProyectoDto {
     private String pRYCorreoPat;
     private String pRYCorreoLU;
     private String pRYCorreoLT;
-    private Date pRYFechaIniPlan;
-    private Date pRYFechaFinPlan;
-    private Date pRYFechaIniReal;
-    private Date pRYFechaFinReal;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate pRYFechaIniPlan;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate pRYFechaFinPlan;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate pRYFechaIniReal;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate pRYFechaFinReal;
     private String pRYEstado;
+    private Long PryVersion;
     
     public ProyectoDto(){
     }
@@ -45,11 +54,20 @@ public class ProyectoDto {
         this.pRYCorreoPat = proyecto.getPRYCorreoPat();
         this.pRYCorreoLU = proyecto.getPRYCorreoLU();
         this.pRYCorreoLT = proyecto.getPRYCorreoLT();
-        this.pRYFechaIniPlan = proyecto.getPRYFechaIniPlan();
-        this.pRYFechaFinPlan = proyecto.getPRYFechaFinPlan();
-        this.pRYFechaIniReal = proyecto.getPRYFechaIniReal();
-        this.pRYFechaFinReal = proyecto.getPRYFechaFinReal();
+        this.pRYFechaIniPlan = proyecto.getPRYFechaIniPlan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.pRYFechaFinPlan = proyecto.getPRYFechaFinPlan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.pRYFechaIniReal = proyecto.getPRYFechaIniReal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.pRYFechaFinReal = proyecto.getPRYFechaFinReal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         this.pRYEstado = proyecto.getPRYEstado();
+        this.PryVersion = proyecto.getPRYVersion();
+    }
+
+    public Long getPryVersion() {
+        return PryVersion;
+    }
+
+    public void setPryVersion(Long PryVersion) {
+        this.PryVersion = PryVersion;
     }
 
     public Long getPryId() {
@@ -116,35 +134,35 @@ public class ProyectoDto {
         this.pRYCorreoLT = pRYCorreoLT;
     }
 
-    public Date getpRYFechaIniPlan() {
+    public LocalDate getpRYFechaIniPlan() {
         return pRYFechaIniPlan;
     }
 
-    public void setpRYFechaIniPlan(Date pRYFechaIniPlan) {
+    public void setpRYFechaIniPlan(LocalDate pRYFechaIniPlan) {
         this.pRYFechaIniPlan = pRYFechaIniPlan;
     }
 
-    public Date getpRYFechaFinPlan() {
+    public LocalDate getpRYFechaFinPlan() {
         return pRYFechaFinPlan;
     }
 
-    public void setpRYFechaFinPlan(Date pRYFechaFinPlan) {
+    public void setpRYFechaFinPlan(LocalDate pRYFechaFinPlan) {
         this.pRYFechaFinPlan = pRYFechaFinPlan;
     }
 
-    public Date getpRYFechaIniReal() {
+    public LocalDate getpRYFechaIniReal() {
         return pRYFechaIniReal;
     }
 
-    public void setpRYFechaIniReal(Date pRYFechaIniReal) {
+    public void setpRYFechaIniReal(LocalDate pRYFechaIniReal) {
         this.pRYFechaIniReal = pRYFechaIniReal;
     }
 
-    public Date getpRYFechaFinReal() {
+    public LocalDate getpRYFechaFinReal() {
         return pRYFechaFinReal;
     }
 
-    public void setpRYFechaFinReal(Date pRYFechaFinReal) {
+    public void setpRYFechaFinReal(LocalDate pRYFechaFinReal) {
         this.pRYFechaFinReal = pRYFechaFinReal;
     }
 

@@ -5,10 +5,15 @@
  */
 package cr.ac.una.admproyectos.model;
 
+import cr.ac.una.admproyectos.util.LocalDateAdapter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -23,12 +28,17 @@ public class ActividadDto {
     private String aCTDescripcion;
     private String aCTNomEncargado;
     private String aCTEstado;
-    private Date aCTFechaIniPlan;
-    private Date aCTFechaFinPlan;
-    private Date aCTFechaIniReal;
-    private Date aCTFechaFinReal;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate aCTFechaIniPlan;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate aCTFechaFinPlan;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate aCTFechaIniReal;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate aCTFechaFinReal;
     private String aCTCorreoEncargado;
     private Long aCTOrden;
+    private Long ActVersion;
     
     public ActividadDto(){
     }
@@ -38,12 +48,21 @@ public class ActividadDto {
         this.aCTDescripcion = actividad.getACTDescripcion();
         this.aCTNomEncargado = actividad.getACTNomEncargado();
         this.aCTEstado = actividad.getACTEstado();
-        this.aCTFechaIniPlan = actividad.getACTFechaIniPlan();
-        this.aCTFechaFinPlan = actividad.getACTFechaFinPlan();
-        this.aCTFechaIniReal = actividad.getACTFechaIniReal();
-        this.aCTFechaFinReal = actividad.getACTFechaFinReal();
+        this.aCTFechaIniPlan = actividad.getACTFechaIniPlan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.aCTFechaFinPlan = actividad.getACTFechaFinPlan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.aCTFechaIniReal = actividad.getACTFechaIniReal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.aCTFechaFinReal = actividad.getACTFechaFinReal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         this.aCTCorreoEncargado = actividad.getACTCorreoEncargado();
         this.aCTOrden = actividad.getACTOrden();
+        this.ActVersion = actividad.getACTVersion();
+    }
+
+    public Long getActVersion() {
+        return ActVersion;
+    }
+
+    public void setActVersion(Long ActVersion) {
+        this.ActVersion = ActVersion;
     }
 
     public Long getActId() {
@@ -78,35 +97,35 @@ public class ActividadDto {
         this.aCTEstado = aCTEstado;
     }
 
-    public Date getaCTFechaIniPlan() {
+    public LocalDate getaCTFechaIniPlan() {
         return aCTFechaIniPlan;
     }
 
-    public void setaCTFechaIniPlan(Date aCTFechaIniPlan) {
+    public void setaCTFechaIniPlan(LocalDate aCTFechaIniPlan) {
         this.aCTFechaIniPlan = aCTFechaIniPlan;
     }
 
-    public Date getaCTFechaFinPlan() {
+    public LocalDate getaCTFechaFinPlan() {
         return aCTFechaFinPlan;
     }
 
-    public void setaCTFechaFinPlan(Date aCTFechaFinPlan) {
+    public void setaCTFechaFinPlan(LocalDate aCTFechaFinPlan) {
         this.aCTFechaFinPlan = aCTFechaFinPlan;
     }
 
-    public Date getaCTFechaIniReal() {
+    public LocalDate getaCTFechaIniReal() {
         return aCTFechaIniReal;
     }
 
-    public void setaCTFechaIniReal(Date aCTFechaIniReal) {
+    public void setaCTFechaIniReal(LocalDate aCTFechaIniReal) {
         this.aCTFechaIniReal = aCTFechaIniReal;
     }
 
-    public Date getaCTFechaFinReal() {
+    public LocalDate getaCTFechaFinReal() {
         return aCTFechaFinReal;
     }
 
-    public void setaCTFechaFinReal(Date aCTFechaFinReal) {
+    public void setaCTFechaFinReal(LocalDate aCTFechaFinReal) {
         this.aCTFechaFinReal = aCTFechaFinReal;
     }
 

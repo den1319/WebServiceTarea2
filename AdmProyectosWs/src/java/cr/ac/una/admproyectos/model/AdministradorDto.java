@@ -27,7 +27,7 @@ public class AdministradorDto {
     private String aDMUsuario;
     private String aDMContrasena;
     private String aDMEstado;
-    
+    private Long AdmVersion;
     public AdministradorDto(){
     }
     
@@ -41,6 +41,15 @@ public class AdministradorDto {
         this.aDMContrasena = administrador.getADMContrasena();
         this.aDMEstado = administrador.getADMEstado();
         this.aDMUsuario = administrador.getADMUsuario();
+        this.AdmVersion = administrador.getADMVersion();
+    }
+
+    public Long getAdmVersion() {
+        return AdmVersion;
+    }
+
+    public void setAdmVersion(Long AdmVersion) {
+        this.AdmVersion = AdmVersion;
     }
 
     public Long getAdmId() {

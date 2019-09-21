@@ -5,10 +5,14 @@
  */
 package cr.ac.una.admproyectos.model;
 
+import cr.ac.una.admproyectos.util.LocalDateAdapter;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -20,9 +24,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 public class SeguimientoDto {
     private Long segId;
-    private Date sEGFecha;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate sEGFecha;
     private double sEGAvance;
-
+    private Long SegVersion;
     
     public SeguimientoDto(){
         
@@ -30,8 +35,17 @@ public class SeguimientoDto {
     
     public SeguimientoDto(Seguimiento seguimiento){
         this.segId= seguimiento.getSegId();
-        this.sEGFecha = seguimiento.getSEGFecha();
+        this.sEGFecha = seguimiento.getSEGFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
         this.sEGAvance = seguimiento.getSEGAvance();
+        this.SegVersion = seguimiento.getSEGVersion();
+    }
+
+    public Long getSegVersion() {
+        return SegVersion;
+    }
+
+    public void setSegVersion(Long SegVersion) {
+        this.SegVersion = SegVersion;
     }
 
     public Long getSegId() {
@@ -42,11 +56,11 @@ public class SeguimientoDto {
         this.segId = segId;
     }
 
-    public Date getsEGFecha() {
+    public LocalDate getsEGFecha() {
         return sEGFecha;
     }
 
-    public void setsEGFecha(Date sEGFecha) {
+    public void setsEGFecha(LocalDate sEGFecha) {
         this.sEGFecha = sEGFecha;
     }
 

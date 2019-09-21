@@ -6,19 +6,19 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.ZoneId;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author gera1
+ * @author JORDI RODRIGUEZ
  */
 @Entity
-@Table(name = "ADP_TB_Seguimientos", schema = "UNA")
+@Table(name = "ADP_TB_Seguimientos")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Seguimiento.findAll", query = "SELECT s FROM Seguimiento s")
@@ -42,10 +42,6 @@ public class Seguimiento implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    
-    @SequenceGenerator(name = "ADMPROYECTOS_SEG_ID_GENERATOR", sequenceName = "UNA.SEQ_SEGUIMIENTOS", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADMPROYECTOS_SEG_ID_GENERATOR")
-    
     @Basic(optional = false)
     @Column(name = "SEG_ID")
     private Long segId;
@@ -65,26 +61,24 @@ public class Seguimiento implements Serializable {
 
     public Seguimiento() {
     }
-
-    public Seguimiento(Long segId) {
-        this.segId = segId;
+    public Seguimiento(Long Id){
+        this.segId = Id;
     }
-
+   public Seguimiento(SeguimientoDto SeguimientoDto){
+       this.segId = SeguimientoDto.getSegId();
+       actualizarSeguimiento(SeguimientoDto);
+       
+   }
+   public void actualizarSeguimiento(SeguimientoDto seguimientoDto){
+       this.sEGFecha = Date.from(seguimientoDto.getsEGFecha().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.sEGAvance = seguimientoDto.getsEGAvance();
+        this.sEGVersion =seguimientoDto.getSegVersion();
+   }
     public Seguimiento(Long segId, Date sEGFecha, double sEGAvance, Long sEGVersion) {
         this.segId = segId;
         this.sEGFecha = sEGFecha;
         this.sEGAvance = sEGAvance;
         this.sEGVersion = sEGVersion;
-    }
-    
-    public Seguimiento(SeguimientoDto seguimiento){
-        this.segId = seguimiento.getSegId();
-        actualizarSeguimiento(seguimiento);
-    }
-    
-    public void actualizarSeguimiento(SeguimientoDto seguimiento){
-        this.sEGFecha = seguimiento.getsEGFecha();
-        this.sEGAvance = seguimiento.getsEGAvance();
     }
 
     public Long getSegId() {

@@ -6,24 +6,23 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author gera1
+ * @author JORDI RODRIGUEZ
  */
 @Entity
-@Table(name = "ADP_TB_Administradores", schema = "UNA")
+@Table(name = "ADP_TB_Administradores")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Administrador.findAll", query = "SELECT a FROM Administrador a")
@@ -42,9 +41,6 @@ public class Administrador implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    @SequenceGenerator(name = "ADMPROYECTOS_ADM_ID_GENERATOR", sequenceName = "UNA.SEQ_ADMINISTRADORES", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADMPROYECTOS_ADM_ID_GENERATOR")
-    
     @Basic(optional = false)
     @Column(name = "ADM_ID")
     private Long admId;
@@ -75,29 +71,13 @@ public class Administrador implements Serializable {
     @Basic(optional = false)
     @Column(name = "ADM_Version")
     private Long aDMVersion;
-
-    public Administrador() {
-    }
-
-    public Administrador(Long admId) {
-        this.admId = admId;
-    }
-
-    public Administrador(Long admId, String aDMNombre, String aDMPApellido, String aDMSApellido, String aDMCedula, String aDMCorreo, String aDMUsuario, String aDMContrasena, String aDMEstado) {
-        this.admId = admId;
-        this.aDMNombre = aDMNombre;
-        this.aDMPApellido = aDMPApellido;
-        this.aDMSApellido = aDMSApellido;
-        this.aDMCedula = aDMCedula;
-        this.aDMCorreo = aDMCorreo;
-        this.aDMUsuario = aDMUsuario;
-        this.aDMContrasena = aDMContrasena;
-        this.aDMEstado = aDMEstado;
-    }
     
-    public Administrador(AdministradorDto administrador){
-        this.admId = administrador.getAdmId();
-        actualizarAdministrador(administrador);
+    public Administrador(){
+    }
+   
+    public Administrador(AdministradorDto AdministradorDto) {
+        this.admId = AdministradorDto.getAdmId();
+        actualizarAdministrador(AdministradorDto);
     }
     
     public void actualizarAdministrador(AdministradorDto administrador){
@@ -109,6 +89,23 @@ public class Administrador implements Serializable {
         this.aDMUsuario = administrador.getaDMUsuario();
         this.aDMContrasena = administrador.getaDMContrasena();
         this.aDMEstado = administrador.getaDMEstado();
+        this.aDMVersion = administrador.getAdmVersion();
+    }
+    public Administrador(Long admId) {
+        this.admId = admId;
+    }
+
+    public Administrador(Long admId, String aDMNombre, String aDMPApellido, String aDMSApellido, String aDMCedula, String aDMCorreo, String aDMUsuario, String aDMContrasena, String aDMEstado, Long aDMVersion) {
+        this.admId = admId;
+        this.aDMNombre = aDMNombre;
+        this.aDMPApellido = aDMPApellido;
+        this.aDMSApellido = aDMSApellido;
+        this.aDMCedula = aDMCedula;
+        this.aDMCorreo = aDMCorreo;
+        this.aDMUsuario = aDMUsuario;
+        this.aDMContrasena = aDMContrasena;
+        this.aDMEstado = aDMEstado;
+        this.aDMVersion = aDMVersion;
     }
 
     public Long getAdmId() {

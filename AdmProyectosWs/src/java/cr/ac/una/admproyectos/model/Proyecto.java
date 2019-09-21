@@ -6,19 +6,19 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author gera1
+ * @author JORDI RODRIGUEZ
  */
 @Entity
-@Table(name = "ADP_TB_Proyectos", schema = "UNA")
+@Table(name = "ADP_TB_Proyectos")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Proyecto.findAll", query = "SELECT p FROM Proyecto p")
@@ -53,10 +53,6 @@ public class Proyecto implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    
-    @SequenceGenerator(name = "ADMPROYECTOS_PRY_ID_GENERATOR", sequenceName = "UNA.SEQ_PROYECTOS", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADMPROYECTOS_PRY_ID_GENERATOR")
-    
     @Basic(optional = false)
     @Column(name = "PRY_ID")
     private Long pryId;
@@ -109,6 +105,27 @@ public class Proyecto implements Serializable {
     public Proyecto() {
     }
 
+    public Proyecto(ProyectoDto ProyectoDto) {
+        this.pryId = ProyectoDto.getPryId();
+        actualizarProyecto(ProyectoDto);
+    }
+
+    public void actualizarProyecto(ProyectoDto ProyectoDto) {
+        this.pRYNombreProyecto = ProyectoDto.getpRYNombreProyecto();
+        this.pRYNomPat = ProyectoDto.getpRYNomPat();
+        this.pRYNomLiderUs = ProyectoDto.getpRYNomLiderUs();
+        this.pRYNomLiderTec = ProyectoDto.getpRYNomLiderTec();
+        this.pRYCorreoPat = ProyectoDto.getpRYCorreoPat();
+        this.pRYCorreoLU = ProyectoDto.getpRYCorreoLU();
+        this.pRYCorreoLT = ProyectoDto.getpRYCorreoLT();
+        this.pRYFechaIniPlan = Date.from(ProyectoDto.getpRYFechaIniPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.pRYFechaFinPlan = Date.from(ProyectoDto.getpRYFechaFinPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.pRYEstado = ProyectoDto.getpRYEstado();
+        this.pRYVersion = ProyectoDto.getPryVersion();
+        this.pRYFechaIniReal = Date.from(ProyectoDto.getpRYFechaIniReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.pRYFechaFinReal = Date.from(ProyectoDto.getpRYFechaFinReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+    }
+
     public Proyecto(Long pryId) {
         this.pryId = pryId;
     }
@@ -126,26 +143,6 @@ public class Proyecto implements Serializable {
         this.pRYFechaFinPlan = pRYFechaFinPlan;
         this.pRYEstado = pRYEstado;
         this.pRYVersion = pRYVersion;
-    }
-    
-    public Proyecto(ProyectoDto proyecto){
-        this.pryId = proyecto.getPryId();
-        actualizarProyecto(proyecto);
-    }
-    
-    public void actualizarProyecto(ProyectoDto proyecto){
-        this.pRYNombreProyecto = proyecto.getpRYNombreProyecto();
-        this.pRYNomPat = proyecto.getpRYNomPat();
-        this.pRYNomLiderUs = proyecto.getpRYNomLiderUs();
-        this.pRYNomLiderTec = proyecto.getpRYNomLiderTec();
-        this.pRYCorreoPat = proyecto.getpRYCorreoPat();
-        this.pRYCorreoLU = proyecto.getpRYCorreoLU();
-        this.pRYCorreoLT = proyecto.getpRYCorreoLT();
-        this.pRYFechaIniPlan = proyecto.getpRYFechaIniPlan();
-        this.pRYFechaFinPlan = proyecto.getpRYFechaFinPlan();
-        this.pRYFechaIniReal = proyecto.getpRYFechaIniReal();
-        this.pRYFechaFinReal = proyecto.getpRYFechaFinReal();
-        this.pRYEstado = proyecto.getpRYEstado();
     }
 
     public Long getPryId() {
@@ -302,5 +299,5 @@ public class Proyecto implements Serializable {
     public String toString() {
         return "cr.ac.una.admproyectos.model.Proyecto[ pryId=" + pryId + " ]";
     }
-    
+
 }

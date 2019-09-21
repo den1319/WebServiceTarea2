@@ -6,19 +6,21 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,10 +28,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author gera1
+ * @author JORDI RODRIGUEZ
  */
 @Entity
-@Table(name = "ADP_TB_Actividades", schema = "UNA")
+@Table(name = "ADP_TB_Actividades")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Actividad.findAll", query = "SELECT a FROM Actividad a")
@@ -49,9 +51,6 @@ public class Actividad implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    @SequenceGenerator(name = "ADMPROYECTOS_ACT_ID_GENERATOR", sequenceName = "UNA.SEQ_ACTIVIDADES", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADMPROYECTOS_ACT_ID_GENERATOR")
-    
     @Basic(optional = false)
     @Column(name = "ACT_ID")
     private Long actId;
@@ -94,37 +93,41 @@ public class Actividad implements Serializable {
     public Actividad() {
     }
 
+    public Actividad(ActividadDto ActividadDto) {
+        this.actId = ActividadDto.getActId();
+        actualizarActividad(ActividadDto);
+    }
+
+    public void actualizarActividad(ActividadDto ActividadDto) {
+        this.aCTDescripcion = ActividadDto.getaCTDescripcion();
+        this.aCTNomEncargado = ActividadDto.getaCTNomEncargado();
+        this.aCTEstado = ActividadDto.getaCTEstado();
+        this.aCTFechaIniPlan = Date.from(ActividadDto.getaCTFechaIniPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.aCTFechaFinPlan = Date.from(ActividadDto.getaCTFechaFinPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());;
+        this.aCTFechaIniReal = Date.from(ActividadDto.getaCTFechaIniReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.aCTFechaFinReal = Date.from(ActividadDto.getaCTFechaFinReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.aCTVersion = ActividadDto.getActVersion();
+        this.aCTCorreoEncargado = ActividadDto.getaCTCorreoEncargado();
+        this.aCTOrden = ActividadDto.getaCTOrden();
+    }
+
     public Actividad(Long actId) {
         this.actId = actId;
     }
 
-    public Actividad(Long actId, String aCTDescripcion, String aCTNomEncargado, String aCTEstado, Date aCTFechaIniPlan, Date aCTFechaFinPlan, Long aCTVersion, String aCTCorreoEncargado, Long aCTOrden) {
+    public Actividad(Long actId, String aCTDescripcion, String aCTNomEncargado, String aCTEstado, Date aCTFechaIniPlan, Date aCTFechaFinPlan, Date aCTFechaIniReal, Date aCTFechaFinReal, Long aCTVersion, String aCTCorreoEncargado, Long aCTOrden, Proyecto pryId) {
         this.actId = actId;
         this.aCTDescripcion = aCTDescripcion;
         this.aCTNomEncargado = aCTNomEncargado;
         this.aCTEstado = aCTEstado;
         this.aCTFechaIniPlan = aCTFechaIniPlan;
         this.aCTFechaFinPlan = aCTFechaFinPlan;
+        this.aCTFechaIniReal = aCTFechaIniReal;
+        this.aCTFechaFinReal = aCTFechaFinReal;
         this.aCTVersion = aCTVersion;
         this.aCTCorreoEncargado = aCTCorreoEncargado;
         this.aCTOrden = aCTOrden;
-    }
-    
-    public Actividad(ActividadDto actividad){
-        this.actId = actividad.getActId();
-        actualizarActividad(actividad);
-    }
-    
-    public void actualizarActividad(ActividadDto actividad){
-        this.aCTDescripcion = actividad.getaCTDescripcion();
-        this.aCTNomEncargado = actividad.getaCTNomEncargado();
-        this.aCTEstado = actividad.getaCTEstado();
-        this.aCTFechaIniPlan = actividad.getaCTFechaIniPlan();
-        this.aCTFechaFinPlan = actividad.getaCTFechaFinPlan();
-        this.aCTFechaIniReal = actividad.getaCTFechaIniReal();
-        this.aCTFechaFinReal = actividad.getaCTFechaFinReal();
-        this.aCTCorreoEncargado = actividad.getaCTCorreoEncargado();
-        this.aCTOrden = actividad.getaCTOrden();
+        this.pryId = pryId;
     }
 
     public Long getActId() {
@@ -247,5 +250,5 @@ public class Actividad implements Serializable {
     public String toString() {
         return "cr.ac.una.admproyectos.model.Actividad[ actId=" + actId + " ]";
     }
-    
+
 }
