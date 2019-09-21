@@ -16,11 +16,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,7 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author JORDI RODRIGUEZ
  */
 @Entity
-@Table(name = "ADP_TB_Actividades")
+@Table(name = "ADP_TB_Actividades", schema = "UNA")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Actividad.findAll", query = "SELECT a FROM Actividad a")
@@ -51,6 +54,8 @@ public class Actividad implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "ADMPROYECTOS_ACT_ID_GENERATOR", sequenceName = "UNA.SEQ_ACTIVIDADES", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADMPROYECTOS_ACT_ID_GENERATOR")
     @Basic(optional = false)
     @Column(name = "ACT_ID")
     private Long actId;
