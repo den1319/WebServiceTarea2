@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Administrador.findByADMContrasena", query = "SELECT a FROM Administrador a WHERE a.aDMContrasena = :aDMContrasena")
     , @NamedQuery(name = "Administrador.findByADMEstado", query = "SELECT a FROM Administrador a WHERE a.aDMEstado = :aDMEstado")
     , @NamedQuery(name = "Administrador.findByADMVersion", query = "SELECT a FROM Administrador a WHERE a.aDMVersion = :aDMVersion")
-    , @NamedQuery(name = "Administrador.findByUsuClave", query = "SELECT e FROM Administrador e WHERE a.aDMUsuario = :aDMUsuario and a.aDMContrasena = :aDMContrasena", hints = @QueryHint(name = "eclipselink.refresh", value = "true"))
+    , @NamedQuery(name = "Administrador.findByUsuClave", query = "SELECT a FROM Administrador a WHERE a.aDMUsuario = :aDMUsuario and a.aDMContrasena = :aDMContrasena", hints = @QueryHint(name = "eclipselink.refresh", value = "true"))
 })
 public class Administrador implements Serializable {
 
