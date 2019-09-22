@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.QueryHint;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,7 +39,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Administrador.findByADMUsuario", query = "SELECT a FROM Administrador a WHERE a.aDMUsuario = :aDMUsuario")
     , @NamedQuery(name = "Administrador.findByADMContrasena", query = "SELECT a FROM Administrador a WHERE a.aDMContrasena = :aDMContrasena")
     , @NamedQuery(name = "Administrador.findByADMEstado", query = "SELECT a FROM Administrador a WHERE a.aDMEstado = :aDMEstado")
-    , @NamedQuery(name = "Administrador.findByADMVersion", query = "SELECT a FROM Administrador a WHERE a.aDMVersion = :aDMVersion")})
+    , @NamedQuery(name = "Administrador.findByADMVersion", query = "SELECT a FROM Administrador a WHERE a.aDMVersion = :aDMVersion")
+    , @NamedQuery(name = "Administrador.findByUsuClave", query = "SELECT e FROM Administrador e WHERE a.aDMUsuario = :aDMUsuario and a.aDMContrasena = :aDMContrasena", hints = @QueryHint(name = "eclipselink.refresh", value = "true"))
+})
 public class Administrador implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -19,6 +19,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -34,6 +35,25 @@ public class AdministradorService {
     @PersistenceContext(unitName = "AdmProyectosWsPU")
     private EntityManager em;
     private EntityTransaction et;
+    
+    public Respuesta validarAdministrador(String usuario, String contrasena) { 
+        try {
+            Query qryActividad = em.createNamedQuery("Administrador.findByUsuClave", Administrador.class);
+            qryActividad.setParameter("aDMUsuario", usuario);
+            qryActividad.setParameter("aDMContrasena", contrasena);
+
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Administrador", new AdministradorDto((Administrador) qryActividad.getSingleResult()));
+
+        } catch (NoResultException ex) {
+            return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existe un usuario con las credenciales ingresadas.", "validarUsuario NoResultException");
+        } catch (NonUniqueResultException ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el usuario.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el usuario.", "validarUsuario NonUniqueResultException");
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el usuario.", ex);
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el usuario.", "validarUsuario " + ex.getMessage());
+        }
+    }
     
     public Respuesta getAdministradors() {
         try {

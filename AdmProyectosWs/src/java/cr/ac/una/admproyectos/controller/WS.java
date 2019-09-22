@@ -6,6 +6,7 @@
 package cr.ac.una.admproyectos.controller;
 
 import cr.ac.una.admproyectos.model.ActividadDto;
+import cr.ac.una.admproyectos.model.Administrador;
 import cr.ac.una.admproyectos.model.AdministradorDto;
 import cr.ac.una.admproyectos.model.ProyectoDto;
 import cr.ac.una.admproyectos.model.SeguimientoDto;
@@ -141,6 +142,21 @@ public class WS {
          }catch(Exception ex){
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Error Eliminando la Actividad", "EliminarActividad" + ex.getMessage());
       }
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "getAdmin")
+    public AdministradorDto getAdmin(@WebParam(name = "usuario") String usuario, @WebParam(name = "contrasena") String contrasena) {
+        Administrador administrador;
+        AdministradorDto administradorDto = null;
+        Respuesta respuesta = AdminService.validarAdministrador(usuario, contrasena);
+        if(respuesta.getEstado()){
+            administrador = (Administrador)respuesta.getResultado();
+            administradorDto = new AdministradorDto(administrador);
+        }
+        return administradorDto;
     }
 
 }
