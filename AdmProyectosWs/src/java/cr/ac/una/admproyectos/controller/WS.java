@@ -148,15 +148,13 @@ public class WS {
      * Web service operation
      */
     @WebMethod(operationName = "getAdmin")
-    public AdministradorDto getAdmin(@WebParam(name = "usuario") String usuario, @WebParam(name = "contrasena") String contrasena) {
-        Administrador administrador;
-        AdministradorDto administradorDto = null;
-        Respuesta respuesta = AdminService.validarAdministrador(usuario, contrasena);
-        if(respuesta.getEstado()){
-            administrador = (Administrador)respuesta.getResultado();
-            administradorDto = new AdministradorDto(administrador);
+    public Respuesta getAdmin(@WebParam(name = "usuario") String usuario, @WebParam(name = "contrasena") String contrasena) {
+        try{
+            Respuesta respuesta = AdminService.validarAdministrador(usuario, contrasena);
+            return respuesta;
+        }catch(Exception ex){
+          return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Error validando el Administrador", "getAdmin" + ex.getMessage());
         }
-        return administradorDto;
     }
 
 }
