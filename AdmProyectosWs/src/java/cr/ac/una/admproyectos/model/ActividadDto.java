@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.una.admproyectos.model;
 
 import cr.ac.una.admproyectos.util.LocalDateAdapter;
@@ -14,12 +9,10 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
 /**
  *
  * @author gera1
  */
-
 @XmlRootElement(name="ActividadDto")
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -149,7 +142,4 @@ public class ActividadDto {
     public String toString() {
         return "ActividadDto{" + "actId=" + actId + ", aCTDescripcion=" + aCTDescripcion + ", aCTNomEncargado=" + aCTNomEncargado + ", aCTEstado=" + aCTEstado + ", aCTFechaIniPlan=" + aCTFechaIniPlan + ", aCTFechaFinPlan=" + aCTFechaFinPlan + ", aCTFechaIniReal=" + aCTFechaIniReal + ", aCTFechaFinReal=" + aCTFechaFinReal + ", aCTCorreoEncargado=" + aCTCorreoEncargado + ", aCTOrden=" + aCTOrden + '}';
     }
-    
-    
-    
 }
