@@ -157,4 +157,17 @@ public class WS {
         }
     }
 
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "GetAdministradoresFiltro")
+    public Respuesta GetAdministradoresFiltro(@WebParam(name = "cedula") String cedula, @WebParam(name = "nombre") String nombre, @WebParam(name = "pApellido") String pApellido) {
+        try{
+            Respuesta respuesta = AdminService.getAdministradoresFiltro(cedula, nombre, pApellido);
+            return respuesta;
+        }catch(Exception ex){
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Error obteniendo los Administradore", "GetAdministradoresFiltro" + ex.getMessage());
+        }
+    }
+
 }
