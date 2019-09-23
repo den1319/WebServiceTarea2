@@ -38,16 +38,16 @@ public class ActividadDto {
     
     public ActividadDto(Actividad actividad){
         this.actId = actividad.getActId();
-        this.aCTDescripcion = actividad.getACTDescripcion();
-        this.aCTNomEncargado = actividad.getACTNomEncargado();
-        this.aCTEstado = actividad.getACTEstado();
-        this.aCTFechaIniPlan = actividad.getACTFechaIniPlan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.aCTFechaFinPlan = actividad.getACTFechaFinPlan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.aCTFechaIniReal = actividad.getACTFechaIniReal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.aCTFechaFinReal = actividad.getACTFechaFinReal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.aCTCorreoEncargado = actividad.getACTCorreoEncargado();
-        this.aCTOrden = actividad.getACTOrden();
-        this.ActVersion = actividad.getACTVersion();
+        this.aCTDescripcion = actividad.getActDescripcion();
+        this.aCTNomEncargado = actividad.getActNomencargado();
+        this.aCTEstado = actividad.getActEstado();
+        this.aCTFechaIniPlan = actividad.getActFechainiplan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.aCTFechaFinPlan = actividad.getActFechafinplan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.aCTFechaIniReal = actividad.getActFechainireal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.aCTFechaFinReal = actividad.getActFechafinreal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.aCTCorreoEncargado = actividad.getActCorreoencargado();
+        this.aCTOrden = actividad.getActOrden();
+        this.ActVersion = actividad.getActVersion();
     }
 
     public Long getActVersion() {

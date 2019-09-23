@@ -6,11 +6,7 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -34,21 +30,21 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author JORDI RODRIGUEZ
  */
 @Entity
-@Table(name = "ADP_TB_Actividades", schema = "UNA")
+@Table(name = "ADP_TB_ACTIVIDADES")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Actividad.findAll", query = "SELECT a FROM Actividad a")
     , @NamedQuery(name = "Actividad.findByActId", query = "SELECT a FROM Actividad a WHERE a.actId = :actId")
-    , @NamedQuery(name = "Actividad.findByACTDescripcion", query = "SELECT a FROM Actividad a WHERE a.aCTDescripcion = :aCTDescripcion")
-    , @NamedQuery(name = "Actividad.findByACTNomEncargado", query = "SELECT a FROM Actividad a WHERE a.aCTNomEncargado = :aCTNomEncargado")
-    , @NamedQuery(name = "Actividad.findByACTEstado", query = "SELECT a FROM Actividad a WHERE a.aCTEstado = :aCTEstado")
-    , @NamedQuery(name = "Actividad.findByACTFechaIniPlan", query = "SELECT a FROM Actividad a WHERE a.aCTFechaIniPlan = :aCTFechaIniPlan")
-    , @NamedQuery(name = "Actividad.findByACTFechaFinPlan", query = "SELECT a FROM Actividad a WHERE a.aCTFechaFinPlan = :aCTFechaFinPlan")
-    , @NamedQuery(name = "Actividad.findByACTFechaIniReal", query = "SELECT a FROM Actividad a WHERE a.aCTFechaIniReal = :aCTFechaIniReal")
-    , @NamedQuery(name = "Actividad.findByACTFechaFinReal", query = "SELECT a FROM Actividad a WHERE a.aCTFechaFinReal = :aCTFechaFinReal")
-    , @NamedQuery(name = "Actividad.findByACTVersion", query = "SELECT a FROM Actividad a WHERE a.aCTVersion = :aCTVersion")
-    , @NamedQuery(name = "Actividad.findByACTCorreoEncargado", query = "SELECT a FROM Actividad a WHERE a.aCTCorreoEncargado = :aCTCorreoEncargado")
-    , @NamedQuery(name = "Actividad.findByACTOrden", query = "SELECT a FROM Actividad a WHERE a.aCTOrden = :aCTOrden")})
+    , @NamedQuery(name = "Actividad.findByActDescripcion", query = "SELECT a FROM Actividad a WHERE a.actDescripcion = :actDescripcion")
+    , @NamedQuery(name = "Actividad.findByActNomencargado", query = "SELECT a FROM Actividad a WHERE a.actNomencargado = :actNomencargado")
+    , @NamedQuery(name = "Actividad.findByActEstado", query = "SELECT a FROM Actividad a WHERE a.actEstado = :actEstado")
+    , @NamedQuery(name = "Actividad.findByActFechainiplan", query = "SELECT a FROM Actividad a WHERE a.actFechainiplan = :actFechainiplan")
+    , @NamedQuery(name = "Actividad.findByActFechafinplan", query = "SELECT a FROM Actividad a WHERE a.actFechafinplan = :actFechafinplan")
+    , @NamedQuery(name = "Actividad.findByActFechainireal", query = "SELECT a FROM Actividad a WHERE a.actFechainireal = :actFechainireal")
+    , @NamedQuery(name = "Actividad.findByActFechafinreal", query = "SELECT a FROM Actividad a WHERE a.actFechafinreal = :actFechafinreal")
+    , @NamedQuery(name = "Actividad.findByActVersion", query = "SELECT a FROM Actividad a WHERE a.actVersion = :actVersion")
+    , @NamedQuery(name = "Actividad.findByActCorreoencargado", query = "SELECT a FROM Actividad a WHERE a.actCorreoencargado = :actCorreoencargado")
+    , @NamedQuery(name = "Actividad.findByActOrden", query = "SELECT a FROM Actividad a WHERE a.actOrden = :actOrden")})
 public class Actividad implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,37 +56,37 @@ public class Actividad implements Serializable {
     @Column(name = "ACT_ID")
     private Long actId;
     @Basic(optional = false)
-    @Column(name = "ACT_Descripcion")
-    private String aCTDescripcion;
+    @Column(name = "ACT_DESCRIPCION")
+    private String actDescripcion;
     @Basic(optional = false)
-    @Column(name = "ACT_NomEncargado")
-    private String aCTNomEncargado;
+    @Column(name = "ACT_NOMENCARGADO")
+    private String actNomencargado;
     @Basic(optional = false)
-    @Column(name = "ACT_Estado")
-    private String aCTEstado;
+    @Column(name = "ACT_ESTADO")
+    private String actEstado;
     @Basic(optional = false)
-    @Column(name = "ACT_FechaIniPlan")
+    @Column(name = "ACT_FECHAINIPLAN")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date aCTFechaIniPlan;
+    private Date actFechainiplan;
     @Basic(optional = false)
-    @Column(name = "ACT_FechaFinPlan")
+    @Column(name = "ACT_FECHAFINPLAN")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date aCTFechaFinPlan;
-    @Column(name = "ACT_FechaIniReal")
+    private Date actFechafinplan;
+    @Column(name = "ACT_FECHAINIREAL")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date aCTFechaIniReal;
-    @Column(name = "ACT_FechaFinReal")
+    private Date actFechainireal;
+    @Column(name = "ACT_FECHAFINREAL")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date aCTFechaFinReal;
+    private Date actFechafinreal;
     @Basic(optional = false)
-    @Column(name = "ACT_Version")
-    private Long aCTVersion;
+    @Column(name = "ACT_VERSION")
+    private Long actVersion;
     @Basic(optional = false)
-    @Column(name = "ACT_CorreoEncargado")
-    private String aCTCorreoEncargado;
+    @Column(name = "ACT_CORREOENCARGADO")
+    private String actCorreoencargado;
     @Basic(optional = false)
-    @Column(name = "ACT_Orden")
-    private Long aCTOrden;
+    @Column(name = "ACT_ORDEN")
+    private Long actOrden;
     @JoinColumn(name = "PRY_ID", referencedColumnName = "PRY_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Proyecto pryId;
@@ -98,41 +94,37 @@ public class Actividad implements Serializable {
     public Actividad() {
     }
 
+    public Actividad(Long actId) {
+        this.actId = actId;
+    }
+
+    public Actividad(Long actId, String actDescripcion, String actNomencargado, String actEstado, Date actFechainiplan, Date actFechafinplan, Long actVersion, String actCorreoencargado, Long actOrden) {
+        this.actId = actId;
+        this.actDescripcion = actDescripcion;
+        this.actNomencargado = actNomencargado;
+        this.actEstado = actEstado;
+        this.actFechainiplan = actFechainiplan;
+        this.actFechafinplan = actFechafinplan;
+        this.actVersion = actVersion;
+        this.actCorreoencargado = actCorreoencargado;
+        this.actOrden = actOrden;
+    }
     public Actividad(ActividadDto ActividadDto) {
         this.actId = ActividadDto.getActId();
         actualizarActividad(ActividadDto);
     }
 
     public void actualizarActividad(ActividadDto ActividadDto) {
-        this.aCTDescripcion = ActividadDto.getaCTDescripcion();
-        this.aCTNomEncargado = ActividadDto.getaCTNomEncargado();
-        this.aCTEstado = ActividadDto.getaCTEstado();
-        this.aCTFechaIniPlan = Date.from(ActividadDto.getaCTFechaIniPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        this.aCTFechaFinPlan = Date.from(ActividadDto.getaCTFechaFinPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());;
-        this.aCTFechaIniReal = Date.from(ActividadDto.getaCTFechaIniReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        this.aCTFechaFinReal = Date.from(ActividadDto.getaCTFechaFinReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        this.aCTVersion = ActividadDto.getActVersion();
-        this.aCTCorreoEncargado = ActividadDto.getaCTCorreoEncargado();
-        this.aCTOrden = ActividadDto.getaCTOrden();
-    }
-
-    public Actividad(Long actId) {
-        this.actId = actId;
-    }
-
-    public Actividad(Long actId, String aCTDescripcion, String aCTNomEncargado, String aCTEstado, Date aCTFechaIniPlan, Date aCTFechaFinPlan, Date aCTFechaIniReal, Date aCTFechaFinReal, Long aCTVersion, String aCTCorreoEncargado, Long aCTOrden, Proyecto pryId) {
-        this.actId = actId;
-        this.aCTDescripcion = aCTDescripcion;
-        this.aCTNomEncargado = aCTNomEncargado;
-        this.aCTEstado = aCTEstado;
-        this.aCTFechaIniPlan = aCTFechaIniPlan;
-        this.aCTFechaFinPlan = aCTFechaFinPlan;
-        this.aCTFechaIniReal = aCTFechaIniReal;
-        this.aCTFechaFinReal = aCTFechaFinReal;
-        this.aCTVersion = aCTVersion;
-        this.aCTCorreoEncargado = aCTCorreoEncargado;
-        this.aCTOrden = aCTOrden;
-        this.pryId = pryId;
+        this.actDescripcion = ActividadDto.getaCTDescripcion();
+        this.actNomencargado = ActividadDto.getaCTNomEncargado();
+        this.actEstado = ActividadDto.getaCTEstado();
+        this.actFechainiplan = Date.from(ActividadDto.getaCTFechaIniPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.actFechafinplan = Date.from(ActividadDto.getaCTFechaFinPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());;
+        this.actFechainireal = Date.from(ActividadDto.getaCTFechaIniReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.actFechafinreal = Date.from(ActividadDto.getaCTFechaFinReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.actVersion = ActividadDto.getActVersion();
+        this.actCorreoencargado = ActividadDto.getaCTCorreoEncargado();
+        this.actOrden = ActividadDto.getaCTOrden();
     }
 
     public Long getActId() {
@@ -143,84 +135,84 @@ public class Actividad implements Serializable {
         this.actId = actId;
     }
 
-    public String getACTDescripcion() {
-        return aCTDescripcion;
+    public String getActDescripcion() {
+        return actDescripcion;
     }
 
-    public void setACTDescripcion(String aCTDescripcion) {
-        this.aCTDescripcion = aCTDescripcion;
+    public void setActDescripcion(String actDescripcion) {
+        this.actDescripcion = actDescripcion;
     }
 
-    public String getACTNomEncargado() {
-        return aCTNomEncargado;
+    public String getActNomencargado() {
+        return actNomencargado;
     }
 
-    public void setACTNomEncargado(String aCTNomEncargado) {
-        this.aCTNomEncargado = aCTNomEncargado;
+    public void setActNomencargado(String actNomencargado) {
+        this.actNomencargado = actNomencargado;
     }
 
-    public String getACTEstado() {
-        return aCTEstado;
+    public String getActEstado() {
+        return actEstado;
     }
 
-    public void setACTEstado(String aCTEstado) {
-        this.aCTEstado = aCTEstado;
+    public void setActEstado(String actEstado) {
+        this.actEstado = actEstado;
     }
 
-    public Date getACTFechaIniPlan() {
-        return aCTFechaIniPlan;
+    public Date getActFechainiplan() {
+        return actFechainiplan;
     }
 
-    public void setACTFechaIniPlan(Date aCTFechaIniPlan) {
-        this.aCTFechaIniPlan = aCTFechaIniPlan;
+    public void setActFechainiplan(Date actFechainiplan) {
+        this.actFechainiplan = actFechainiplan;
     }
 
-    public Date getACTFechaFinPlan() {
-        return aCTFechaFinPlan;
+    public Date getActFechafinplan() {
+        return actFechafinplan;
     }
 
-    public void setACTFechaFinPlan(Date aCTFechaFinPlan) {
-        this.aCTFechaFinPlan = aCTFechaFinPlan;
+    public void setActFechafinplan(Date actFechafinplan) {
+        this.actFechafinplan = actFechafinplan;
     }
 
-    public Date getACTFechaIniReal() {
-        return aCTFechaIniReal;
+    public Date getActFechainireal() {
+        return actFechainireal;
     }
 
-    public void setACTFechaIniReal(Date aCTFechaIniReal) {
-        this.aCTFechaIniReal = aCTFechaIniReal;
+    public void setActFechainireal(Date actFechainireal) {
+        this.actFechainireal = actFechainireal;
     }
 
-    public Date getACTFechaFinReal() {
-        return aCTFechaFinReal;
+    public Date getActFechafinreal() {
+        return actFechafinreal;
     }
 
-    public void setACTFechaFinReal(Date aCTFechaFinReal) {
-        this.aCTFechaFinReal = aCTFechaFinReal;
+    public void setActFechafinreal(Date actFechafinreal) {
+        this.actFechafinreal = actFechafinreal;
     }
 
-    public Long getACTVersion() {
-        return aCTVersion;
+    public Long getActVersion() {
+        return actVersion;
     }
 
-    public void setACTVersion(Long aCTVersion) {
-        this.aCTVersion = aCTVersion;
+    public void setActVersion(Long actVersion) {
+        this.actVersion = actVersion;
     }
 
-    public String getACTCorreoEncargado() {
-        return aCTCorreoEncargado;
+    public String getActCorreoencargado() {
+        return actCorreoencargado;
     }
 
-    public void setACTCorreoEncargado(String aCTCorreoEncargado) {
-        this.aCTCorreoEncargado = aCTCorreoEncargado;
+    public void setActCorreoencargado(String actCorreoencargado) {
+        this.actCorreoencargado = actCorreoencargado;
     }
 
-    public Long getACTOrden() {
-        return aCTOrden;
+    public Long getActOrden() {
+        return actOrden;
     }
 
-    public void setACTOrden(Long aCTOrden) {
-        this.aCTOrden = aCTOrden;
+    public void setActOrden(Long actOrden) {
+        this.actOrden = actOrden;
     }
 
     public Proyecto getPryId() {
@@ -255,5 +247,5 @@ public class Actividad implements Serializable {
     public String toString() {
         return "cr.ac.una.admproyectos.model.Actividad[ actId=" + actId + " ]";
     }
-
+    
 }

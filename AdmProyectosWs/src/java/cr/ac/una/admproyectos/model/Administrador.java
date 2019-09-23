@@ -6,8 +6,6 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.QueryHint;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -26,26 +23,24 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author JORDI RODRIGUEZ
  */
 @Entity
-@Table(name = "ADP_TB_Administradores", schema = "UNA")
+@Table(name = "ADP_TB_ADMINISTRADORES")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Administrador.findAll", query = "SELECT a FROM Administrador a")
     , @NamedQuery(name = "Administrador.findByAdmId", query = "SELECT a FROM Administrador a WHERE a.admId = :admId")
-    , @NamedQuery(name = "Administrador.findByADMNombre", query = "SELECT a FROM Administrador a WHERE a.aDMNombre = :aDMNombre")
-    , @NamedQuery(name = "Administrador.findByADMPApellido", query = "SELECT a FROM Administrador a WHERE a.aDMPApellido = :aDMPApellido")
-    , @NamedQuery(name = "Administrador.findByADMSApellido", query = "SELECT a FROM Administrador a WHERE a.aDMSApellido = :aDMSApellido")
-    , @NamedQuery(name = "Administrador.findByADMCedula", query = "SELECT a FROM Administrador a WHERE a.aDMCedula = :aDMCedula")
-    , @NamedQuery(name = "Administrador.findByADMCorreo", query = "SELECT a FROM Administrador a WHERE a.aDMCorreo = :aDMCorreo")
-    , @NamedQuery(name = "Administrador.findByADMUsuario", query = "SELECT a FROM Administrador a WHERE a.aDMUsuario = :aDMUsuario")
-    , @NamedQuery(name = "Administrador.findByADMContrasena", query = "SELECT a FROM Administrador a WHERE a.aDMContrasena = :aDMContrasena")
-    , @NamedQuery(name = "Administrador.findByADMEstado", query = "SELECT a FROM Administrador a WHERE a.aDMEstado = :aDMEstado")
-    , @NamedQuery(name = "Administrador.findByADMVersion", query = "SELECT a FROM Administrador a WHERE a.aDMVersion = :aDMVersion")
-    , @NamedQuery(name = "Administrador.findByUsuClave", query = "SELECT a FROM Administrador a WHERE a.aDMUsuario = :aDMUsuario and a.aDMContrasena = :aDMContrasena", hints = @QueryHint(name = "eclipselink.refresh", value = "true"))
-})
+    , @NamedQuery(name = "Administrador.findByAdmNombre", query = "SELECT a FROM Administrador a WHERE a.admNombre = :admNombre")
+    , @NamedQuery(name = "Administrador.findByAdmPapellido", query = "SELECT a FROM Administrador a WHERE a.admPapellido = :admPapellido")
+    , @NamedQuery(name = "Administrador.findByAdmSapellido", query = "SELECT a FROM Administrador a WHERE a.admSapellido = :admSapellido")
+    , @NamedQuery(name = "Administrador.findByAdmCedula", query = "SELECT a FROM Administrador a WHERE a.admCedula = :admCedula")
+    , @NamedQuery(name = "Administrador.findByAdmCorreo", query = "SELECT a FROM Administrador a WHERE a.admCorreo = :admCorreo")
+    , @NamedQuery(name = "Administrador.findByAdmUsuario", query = "SELECT a FROM Administrador a WHERE a.admUsuario = :admUsuario")
+    , @NamedQuery(name = "Administrador.findByAdmContrasena", query = "SELECT a FROM Administrador a WHERE a.admContrasena = :admContrasena")
+    , @NamedQuery(name = "Administrador.findByAdmEstado", query = "SELECT a FROM Administrador a WHERE a.admEstado = :admEstado")
+    , @NamedQuery(name = "Administrador.findByAdmVersion", query = "SELECT a FROM Administrador a WHERE a.admVersion = :admVersion")})
 public class Administrador implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation 
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @SequenceGenerator(name = "ADMPROYECTOS_ADM_ID_GENERATOR", sequenceName = "UNA.SEQ_ADMINISTRADORES", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADMPROYECTOS_ADM_ID_GENERATOR")
@@ -53,67 +48,66 @@ public class Administrador implements Serializable {
     @Column(name = "ADM_ID")
     private Long admId;
     @Basic(optional = false)
-    @Column(name = "ADM_Nombre")
-    private String aDMNombre;
+    @Column(name = "ADM_NOMBRE")
+    private String admNombre;
     @Basic(optional = false)
-    @Column(name = "ADM_PApellido")
-    private String aDMPApellido;
+    @Column(name = "ADM_PAPELLIDO")
+    private String admPapellido;
     @Basic(optional = false)
-    @Column(name = "ADM_SApellido")
-    private String aDMSApellido;
+    @Column(name = "ADM_SAPELLIDO")
+    private String admSapellido;
     @Basic(optional = false)
-    @Column(name = "ADM_Cedula")
-    private String aDMCedula;
+    @Column(name = "ADM_CEDULA")
+    private String admCedula;
     @Basic(optional = false)
-    @Column(name = "ADM_Correo")
-    private String aDMCorreo;
+    @Column(name = "ADM_CORREO")
+    private String admCorreo;
     @Basic(optional = false)
-    @Column(name = "ADM_Usuario")
-    private String aDMUsuario;
+    @Column(name = "ADM_USUARIO")
+    private String admUsuario;
     @Basic(optional = false)
-    @Column(name = "ADM_Contrasena")
-    private String aDMContrasena;
+    @Column(name = "ADM_CONTRASENA")
+    private String admContrasena;
     @Basic(optional = false)
-    @Column(name = "ADM_Estado")
-    private String aDMEstado;
+    @Column(name = "ADM_ESTADO")
+    private String admEstado;
     @Basic(optional = false)
-    @Column(name = "ADM_Version")
-    private Long aDMVersion;
-    
-    public Administrador(){
+    @Column(name = "ADM_VERSION")
+    private Long admVersion;
+
+    public Administrador() {
     }
-   
+
+    public Administrador(Long admId) {
+        this.admId = admId;
+    }
     public Administrador(AdministradorDto AdministradorDto) {
         this.admId = AdministradorDto.getAdmId();
         actualizarAdministrador(AdministradorDto);
     }
     
     public void actualizarAdministrador(AdministradorDto administrador){
-        this.aDMNombre = administrador.getaDMNombre();
-        this.aDMPApellido = administrador.getaDMPApellido();
-        this.aDMSApellido = administrador.getaDMSApellido();
-        this.aDMCedula = administrador.getaDMCedula();
-        this.aDMCorreo = administrador.getaDMCorreo();
-        this.aDMUsuario = administrador.getaDMUsuario();
-        this.aDMContrasena = administrador.getaDMContrasena();
-        this.aDMEstado = administrador.getaDMEstado();
-        this.aDMVersion = administrador.getAdmVersion();
+        this.admNombre = administrador.getAdmNombre();
+        this.admPapellido = administrador.getAdmPApellido();
+        this.admSapellido = administrador.getAdmSApellido();
+        this.admCedula = administrador.getAdmCedula();
+        this.admCorreo = administrador.getAdmCorreo();
+        this.admUsuario = administrador.getAdmUsuario();
+        this.admContrasena = administrador.getAdmContrasena();
+        this.admEstado = administrador.getAdmEstado();
+        this.admVersion = administrador.getAdmVersion();
     }
-    public Administrador(Long admId) {
+    public Administrador(Long admId, String admNombre, String admPapellido, String admSapellido, String admCedula, String admCorreo, String admUsuario, String admContrasena, String admEstado, Long admVersion) {
         this.admId = admId;
-    }
-
-    public Administrador(Long admId, String aDMNombre, String aDMPApellido, String aDMSApellido, String aDMCedula, String aDMCorreo, String aDMUsuario, String aDMContrasena, String aDMEstado, Long aDMVersion) {
-        this.admId = admId;
-        this.aDMNombre = aDMNombre;
-        this.aDMPApellido = aDMPApellido;
-        this.aDMSApellido = aDMSApellido;
-        this.aDMCedula = aDMCedula;
-        this.aDMCorreo = aDMCorreo;
-        this.aDMUsuario = aDMUsuario;
-        this.aDMContrasena = aDMContrasena;
-        this.aDMEstado = aDMEstado;
-        this.aDMVersion = aDMVersion;
+        this.admNombre = admNombre;
+        this.admPapellido = admPapellido;
+        this.admSapellido = admSapellido;
+        this.admCedula = admCedula;
+        this.admCorreo = admCorreo;
+        this.admUsuario = admUsuario;
+        this.admContrasena = admContrasena;
+        this.admEstado = admEstado;
+        this.admVersion = admVersion;
     }
 
     public Long getAdmId() {
@@ -124,76 +118,76 @@ public class Administrador implements Serializable {
         this.admId = admId;
     }
 
-    public String getADMNombre() {
-        return aDMNombre;
+    public String getAdmNombre() {
+        return admNombre;
     }
 
-    public void setADMNombre(String aDMNombre) {
-        this.aDMNombre = aDMNombre;
+    public void setAdmNombre(String admNombre) {
+        this.admNombre = admNombre;
     }
 
-    public String getADMPApellido() {
-        return aDMPApellido;
+    public String getAdmPapellido() {
+        return admPapellido;
     }
 
-    public void setADMPApellido(String aDMPApellido) {
-        this.aDMPApellido = aDMPApellido;
+    public void setAdmPapellido(String admPapellido) {
+        this.admPapellido = admPapellido;
     }
 
-    public String getADMSApellido() {
-        return aDMSApellido;
+    public String getAdmSapellido() {
+        return admSapellido;
     }
 
-    public void setADMSApellido(String aDMSApellido) {
-        this.aDMSApellido = aDMSApellido;
+    public void setAdmSapellido(String admSapellido) {
+        this.admSapellido = admSapellido;
     }
 
-    public String getADMCedula() {
-        return aDMCedula;
+    public String getAdmCedula() {
+        return admCedula;
     }
 
-    public void setADMCedula(String aDMCedula) {
-        this.aDMCedula = aDMCedula;
+    public void setAdmCedula(String admCedula) {
+        this.admCedula = admCedula;
     }
 
-    public String getADMCorreo() {
-        return aDMCorreo;
+    public String getAdmCorreo() {
+        return admCorreo;
     }
 
-    public void setADMCorreo(String aDMCorreo) {
-        this.aDMCorreo = aDMCorreo;
+    public void setAdmCorreo(String admCorreo) {
+        this.admCorreo = admCorreo;
     }
 
-    public String getADMUsuario() {
-        return aDMUsuario;
+    public String getAdmUsuario() {
+        return admUsuario;
     }
 
-    public void setADMUsuario(String aDMUsuario) {
-        this.aDMUsuario = aDMUsuario;
+    public void setAdmUsuario(String admUsuario) {
+        this.admUsuario = admUsuario;
     }
 
-    public String getADMContrasena() {
-        return aDMContrasena;
+    public String getAdmContrasena() {
+        return admContrasena;
     }
 
-    public void setADMContrasena(String aDMContrasena) {
-        this.aDMContrasena = aDMContrasena;
+    public void setAdmContrasena(String admContrasena) {
+        this.admContrasena = admContrasena;
     }
 
-    public String getADMEstado() {
-        return aDMEstado;
+    public String getAdmEstado() {
+        return admEstado;
     }
 
-    public void setADMEstado(String aDMEstado) {
-        this.aDMEstado = aDMEstado;
+    public void setAdmEstado(String admEstado) {
+        this.admEstado = admEstado;
     }
 
-    public Long getADMVersion() {
-        return aDMVersion;
+    public Long getAdmVersion() {
+        return admVersion;
     }
 
-    public void setADMVersion(Long aDMVersion) {
-        this.aDMVersion = aDMVersion;
+    public void setAdmVersion(Long admVersion) {
+        this.admVersion = admVersion;
     }
 
     @Override

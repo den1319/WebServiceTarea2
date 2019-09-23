@@ -6,8 +6,6 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.ZoneId;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -32,14 +30,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author JORDI RODRIGUEZ
  */
 @Entity
-@Table(name = "ADP_TB_Seguimientos", schema="UNA")
+@Table(name = "ADP_TB_SEGUIMIENTOS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Seguimiento.findAll", query = "SELECT s FROM Seguimiento s")
     , @NamedQuery(name = "Seguimiento.findBySegId", query = "SELECT s FROM Seguimiento s WHERE s.segId = :segId")
-    , @NamedQuery(name = "Seguimiento.findBySEGFecha", query = "SELECT s FROM Seguimiento s WHERE s.sEGFecha = :sEGFecha")
-    , @NamedQuery(name = "Seguimiento.findBySEGAvance", query = "SELECT s FROM Seguimiento s WHERE s.sEGAvance = :sEGAvance")
-    , @NamedQuery(name = "Seguimiento.findBySEGVersion", query = "SELECT s FROM Seguimiento s WHERE s.sEGVersion = :sEGVersion")})
+    , @NamedQuery(name = "Seguimiento.findBySegFecha", query = "SELECT s FROM Seguimiento s WHERE s.segFecha = :segFecha")
+    , @NamedQuery(name = "Seguimiento.findBySegAvance", query = "SELECT s FROM Seguimiento s WHERE s.segAvance = :segAvance")
+    , @NamedQuery(name = "Seguimiento.findBySegVersion", query = "SELECT s FROM Seguimiento s WHERE s.segVersion = :segVersion")
+    , @NamedQuery(name = "Seguimiento.findBySegDescripcion", query = "SELECT s FROM Seguimiento s WHERE s.segDescripcion = :segDescripcion")})
 public class Seguimiento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,39 +50,45 @@ public class Seguimiento implements Serializable {
     @Column(name = "SEG_ID")
     private Long segId;
     @Basic(optional = false)
-    @Column(name = "SEG_Fecha")
+    @Column(name = "SEG_FECHA")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date sEGFecha;
+    private Date segFecha;
     @Basic(optional = false)
-    @Column(name = "SEG_Avance")
-    private double sEGAvance;
+    @Column(name = "SEG_AVANCE")
+    private double segAvance;
     @Basic(optional = false)
-    @Column(name = "SEG_Version")
-    private Long sEGVersion;
+    @Column(name = "SEG_VERSION")
+    private Long segVersion;
+    @Basic(optional = false)
+    @Column(name = "SEG_DESCRIPCION")
+    private String segDescripcion;
     @JoinColumn(name = "PRY_ID", referencedColumnName = "PRY_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Proyecto pryId;
 
     public Seguimiento() {
     }
-    public Seguimiento(Long Id){
-        this.segId = Id;
+
+    public Seguimiento(Long segId) {
+        this.segId = segId;
     }
-   public Seguimiento(SeguimientoDto SeguimientoDto){
+public Seguimiento(SeguimientoDto SeguimientoDto){
        this.segId = SeguimientoDto.getSegId();
        actualizarSeguimiento(SeguimientoDto);
        
    }
    public void actualizarSeguimiento(SeguimientoDto seguimientoDto){
-       this.sEGFecha = Date.from(seguimientoDto.getsEGFecha().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        this.sEGAvance = seguimientoDto.getsEGAvance();
-        this.sEGVersion =seguimientoDto.getSegVersion();
+       this.segFecha = Date.from(seguimientoDto.getsEGFecha().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.segAvance = seguimientoDto.getsEGAvance();
+        this.segVersion =seguimientoDto.getSegVersion();
+        this.segDescripcion = seguimientoDto.getSegDescripcion();
    }
-    public Seguimiento(Long segId, Date sEGFecha, double sEGAvance, Long sEGVersion) {
+    public Seguimiento(Long segId, Date segFecha, double segAvance, Long segVersion, String segDescripcion) {
         this.segId = segId;
-        this.sEGFecha = sEGFecha;
-        this.sEGAvance = sEGAvance;
-        this.sEGVersion = sEGVersion;
+        this.segFecha = segFecha;
+        this.segAvance = segAvance;
+        this.segVersion = segVersion;
+        this.segDescripcion = segDescripcion;
     }
 
     public Long getSegId() {
@@ -94,28 +99,36 @@ public class Seguimiento implements Serializable {
         this.segId = segId;
     }
 
-    public Date getSEGFecha() {
-        return sEGFecha;
+    public Date getSegFecha() {
+        return segFecha;
     }
 
-    public void setSEGFecha(Date sEGFecha) {
-        this.sEGFecha = sEGFecha;
+    public void setSegFecha(Date segFecha) {
+        this.segFecha = segFecha;
     }
 
-    public double getSEGAvance() {
-        return sEGAvance;
+    public double getSegAvance() {
+        return segAvance;
     }
 
-    public void setSEGAvance(double sEGAvance) {
-        this.sEGAvance = sEGAvance;
+    public void setSegAvance(double segAvance) {
+        this.segAvance = segAvance;
     }
 
-    public Long getSEGVersion() {
-        return sEGVersion;
+    public Long getSegVersion() {
+        return segVersion;
     }
 
-    public void setSEGVersion(Long sEGVersion) {
-        this.sEGVersion = sEGVersion;
+    public void setSegVersion(Long segVersion) {
+        this.segVersion = segVersion;
+    }
+
+    public String getSegDescripcion() {
+        return segDescripcion;
+    }
+
+    public void setSegDescripcion(String segDescripcion) {
+        this.segDescripcion = segDescripcion;
     }
 
     public Proyecto getPryId() {

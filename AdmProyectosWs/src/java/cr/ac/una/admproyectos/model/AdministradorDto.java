@@ -19,29 +19,29 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 public class AdministradorDto {
     private Long admId;
-    private String aDMNombre;
-    private String aDMPApellido;
-    private String aDMSApellido;
-    private String aDMCedula;
-    private String aDMCorreo;
-    private String aDMUsuario;
-    private String aDMContrasena;
-    private String aDMEstado;
+    private String AdmNombre;
+    private String AdmPApellido;
+    private String AdmSApellido;
+    private String AdmCedula;
+    private String AdmCorreo;
+    private String AdmUsuario;
+    private String AdmContrasena;
+    private String AdmEstado;
     private Long AdmVersion;
     public AdministradorDto(){
     }
     
     public AdministradorDto(Administrador administrador){
         this.admId=administrador.getAdmId();
-        this.aDMNombre= administrador.getADMNombre();
-        this.aDMPApellido= administrador.getADMPApellido();
-        this.aDMSApellido=administrador.getADMSApellido();
-        this.aDMCedula = administrador.getADMCedula();
-        this.aDMCorreo = administrador.getADMCorreo();
-        this.aDMContrasena = administrador.getADMContrasena();
-        this.aDMEstado = administrador.getADMEstado();
-        this.aDMUsuario = administrador.getADMUsuario();
-        this.AdmVersion = administrador.getADMVersion();
+        this.AdmNombre= administrador.getAdmNombre();
+        this.AdmPApellido= administrador.getAdmPapellido();
+        this.AdmSApellido=administrador.getAdmSapellido();
+        this.AdmCedula = administrador.getAdmCedula();
+        this.AdmCorreo = administrador.getAdmCorreo();
+        this.AdmContrasena = administrador.getAdmContrasena();
+        this.AdmEstado = administrador.getAdmEstado();
+        this.AdmUsuario = administrador.getAdmUsuario();
+        this.AdmVersion = administrador.getAdmVersion();
     }
 
     public Long getAdmVersion() {
@@ -60,73 +60,73 @@ public class AdministradorDto {
         this.admId = admId;
     }
 
-    public String getaDMNombre() {
-        return aDMNombre;
+    public String getAdmNombre() {
+        return AdmNombre;
     }
 
-    public void setaDMNombre(String aDMNombre) {
-        this.aDMNombre = aDMNombre;
+    public void setAdmNombre(String AdmNombre) {
+        this.AdmNombre = AdmNombre;
     }
 
-    public String getaDMPApellido() {
-        return aDMPApellido;
+    public String getAdmPApellido() {
+        return AdmPApellido;
     }
 
-    public void setaDMPApellido(String aDMPApellido) {
-        this.aDMPApellido = aDMPApellido;
+    public void setAdmPApellido(String AdmPApellido) {
+        this.AdmPApellido = AdmPApellido;
     }
 
-    public String getaDMSApellido() {
-        return aDMSApellido;
+    public String getAdmSApellido() {
+        return AdmSApellido;
     }
 
-    public void setaDMSApellido(String aDMSApellido) {
-        this.aDMSApellido = aDMSApellido;
+    public void setAdmSApellido(String AdmSApellido) {
+        this.AdmSApellido = AdmSApellido;
     }
 
-    public String getaDMCedula() {
-        return aDMCedula;
+    public String getAdmCedula() {
+        return AdmCedula;
     }
 
-    public void setaDMCedula(String aDMCedula) {
-        this.aDMCedula = aDMCedula;
+    public void setAdmCedula(String AdmCedula) {
+        this.AdmCedula = AdmCedula;
     }
 
-    public String getaDMCorreo() {
-        return aDMCorreo;
+    public String getAdmCorreo() {
+        return AdmCorreo;
     }
 
-    public void setaDMCorreo(String aDMCorreo) {
-        this.aDMCorreo = aDMCorreo;
+    public void setAdmCorreo(String AdmCorreo) {
+        this.AdmCorreo = AdmCorreo;
     }
 
-    public String getaDMUsuario() {
-        return aDMUsuario;
+    public String getAdmUsuario() {
+        return AdmUsuario;
     }
 
-    public void setaDMUsuario(String aDMUsuario) {
-        this.aDMUsuario = aDMUsuario;
+    public void setAdmUsuario(String AdmUsuario) {
+        this.AdmUsuario = AdmUsuario;
     }
 
-    public String getaDMContrasena() {
-        return aDMContrasena;
+    public String getAdmContrasena() {
+        return AdmContrasena;
     }
 
-    public void setaDMContrasena(String aDMContrasena) {
-        this.aDMContrasena = aDMContrasena;
+    public void setAdmContrasena(String AdmContrasena) {
+        this.AdmContrasena = AdmContrasena;
     }
 
-    public String getaDMEstado() {
-        return aDMEstado;
+    public String getAdmEstado() {
+        return AdmEstado;
     }
 
-    public void setaDMEstado(String aDMEstado) {
-        this.aDMEstado = aDMEstado;
+    public void setAdmEstado(String AdmEstado) {
+        this.AdmEstado = AdmEstado;
     }
 
     @Override
     public String toString() {
-        return "AdministradorDto{" + "admId=" + admId + ", aDMNombre=" + aDMNombre + ", aDMPApellido=" + aDMPApellido + ", aDMSApellido=" + aDMSApellido + ", aDMCedula=" + aDMCedula + ", aDMCorreo=" + aDMCorreo + ", aDMUsuario=" + aDMUsuario + ", aDMContrasena=" + aDMContrasena + ", aDMEstado=" + aDMEstado + '}';
+        return "AdministradorDto{" + "admId=" + admId + ", AdmNombre=" + AdmNombre + ", AdmPApellido=" + AdmPApellido + ", AdmSApellido=" + AdmSApellido + ", AdmCedula=" + AdmCedula + ", AdmCorreo=" + AdmCorreo + ", AdmUsuario=" + AdmUsuario + ", AdmContrasena=" + AdmContrasena + ", AdmEstado=" + AdmEstado + '}';
     }
     
     

@@ -41,25 +41,34 @@ public class ProyectoDto {
     private LocalDate pRYFechaFinReal;
     private String pRYEstado;
     private Long PryVersion;
-    
+    private double PryPorcentaje;
     public ProyectoDto(){
     }
     
     public ProyectoDto(Proyecto proyecto){
         this.pryId = proyecto.getPryId();
-        this.pRYNombreProyecto = proyecto.getPRYNombreProyecto();
-        this.pRYNomPat = proyecto.getPRYNomPat();
-        this.pRYNomLiderUs = proyecto.getPRYNomLiderUs();
-        this.pRYNomLiderTec = proyecto.getPRYNomLiderTec();
-        this.pRYCorreoPat = proyecto.getPRYCorreoPat();
-        this.pRYCorreoLU = proyecto.getPRYCorreoLU();
-        this.pRYCorreoLT = proyecto.getPRYCorreoLT();
-        this.pRYFechaIniPlan = proyecto.getPRYFechaIniPlan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.pRYFechaFinPlan = proyecto.getPRYFechaFinPlan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.pRYFechaIniReal = proyecto.getPRYFechaIniReal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.pRYFechaFinReal = proyecto.getPRYFechaFinReal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.pRYEstado = proyecto.getPRYEstado();
-        this.PryVersion = proyecto.getPRYVersion();
+        this.pRYNombreProyecto = proyecto.getPryNombreproyecto();
+        this.pRYNomPat = proyecto.getPryNompat();
+        this.pRYNomLiderUs = proyecto.getPryNomliderus();
+        this.pRYNomLiderTec = proyecto.getPryNomlidertec();
+        this.pRYCorreoPat = proyecto.getPryCorreopat();
+        this.pRYCorreoLU = proyecto.getPryCorreolu();
+        this.pRYCorreoLT = proyecto.getPryCorreolt();
+        this.pRYFechaIniPlan = proyecto.getPryFechainiplan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.pRYFechaFinPlan = proyecto.getPryFechafinplan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.pRYFechaIniReal = proyecto.getPryFechainireal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.pRYFechaFinReal = proyecto.getPryFechafinplan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.pRYEstado = proyecto.getPryEstado();
+        this.PryVersion = proyecto.getPryVersion();
+        this.PryPorcentaje = proyecto.getPryPorcentaje();
+    }
+
+    public double getPryPorcentaje() {
+        return PryPorcentaje;
+    }
+
+    public void setPryPorcentaje(double PryPorcentaje) {
+        this.PryPorcentaje = PryPorcentaje;
     }
 
     public Long getPryVersion() {

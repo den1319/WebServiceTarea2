@@ -6,8 +6,6 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
@@ -33,24 +31,25 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author JORDI RODRIGUEZ
  */
 @Entity
-@Table(name = "ADP_TB_Proyectos", schema="UNA")
+@Table(name = "ADP_TB_PROYECTOS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Proyecto.findAll", query = "SELECT p FROM Proyecto p")
     , @NamedQuery(name = "Proyecto.findByPryId", query = "SELECT p FROM Proyecto p WHERE p.pryId = :pryId")
-    , @NamedQuery(name = "Proyecto.findByPRYNombreProyecto", query = "SELECT p FROM Proyecto p WHERE p.pRYNombreProyecto = :pRYNombreProyecto")
-    , @NamedQuery(name = "Proyecto.findByPRYNomPat", query = "SELECT p FROM Proyecto p WHERE p.pRYNomPat = :pRYNomPat")
-    , @NamedQuery(name = "Proyecto.findByPRYNomLiderUs", query = "SELECT p FROM Proyecto p WHERE p.pRYNomLiderUs = :pRYNomLiderUs")
-    , @NamedQuery(name = "Proyecto.findByPRYNomLiderTec", query = "SELECT p FROM Proyecto p WHERE p.pRYNomLiderTec = :pRYNomLiderTec")
-    , @NamedQuery(name = "Proyecto.findByPRYCorreoPat", query = "SELECT p FROM Proyecto p WHERE p.pRYCorreoPat = :pRYCorreoPat")
-    , @NamedQuery(name = "Proyecto.findByPRYCorreoLU", query = "SELECT p FROM Proyecto p WHERE p.pRYCorreoLU = :pRYCorreoLU")
-    , @NamedQuery(name = "Proyecto.findByPRYCorreoLT", query = "SELECT p FROM Proyecto p WHERE p.pRYCorreoLT = :pRYCorreoLT")
-    , @NamedQuery(name = "Proyecto.findByPRYFechaIniPlan", query = "SELECT p FROM Proyecto p WHERE p.pRYFechaIniPlan = :pRYFechaIniPlan")
-    , @NamedQuery(name = "Proyecto.findByPRYFechaFinPlan", query = "SELECT p FROM Proyecto p WHERE p.pRYFechaFinPlan = :pRYFechaFinPlan")
-    , @NamedQuery(name = "Proyecto.findByPRYFechaIniReal", query = "SELECT p FROM Proyecto p WHERE p.pRYFechaIniReal = :pRYFechaIniReal")
-    , @NamedQuery(name = "Proyecto.findByPRYFechaFinReal", query = "SELECT p FROM Proyecto p WHERE p.pRYFechaFinReal = :pRYFechaFinReal")
-    , @NamedQuery(name = "Proyecto.findByPRYEstado", query = "SELECT p FROM Proyecto p WHERE p.pRYEstado = :pRYEstado")
-    , @NamedQuery(name = "Proyecto.findByPRYVersion", query = "SELECT p FROM Proyecto p WHERE p.pRYVersion = :pRYVersion")})
+    , @NamedQuery(name = "Proyecto.findByPryNombreproyecto", query = "SELECT p FROM Proyecto p WHERE p.pryNombreproyecto = :pryNombreproyecto")
+    , @NamedQuery(name = "Proyecto.findByPryNompat", query = "SELECT p FROM Proyecto p WHERE p.pryNompat = :pryNompat")
+    , @NamedQuery(name = "Proyecto.findByPryNomliderus", query = "SELECT p FROM Proyecto p WHERE p.pryNomliderus = :pryNomliderus")
+    , @NamedQuery(name = "Proyecto.findByPryNomlidertec", query = "SELECT p FROM Proyecto p WHERE p.pryNomlidertec = :pryNomlidertec")
+    , @NamedQuery(name = "Proyecto.findByPryCorreopat", query = "SELECT p FROM Proyecto p WHERE p.pryCorreopat = :pryCorreopat")
+    , @NamedQuery(name = "Proyecto.findByPryCorreolu", query = "SELECT p FROM Proyecto p WHERE p.pryCorreolu = :pryCorreolu")
+    , @NamedQuery(name = "Proyecto.findByPryCorreolt", query = "SELECT p FROM Proyecto p WHERE p.pryCorreolt = :pryCorreolt")
+    , @NamedQuery(name = "Proyecto.findByPryFechainiplan", query = "SELECT p FROM Proyecto p WHERE p.pryFechainiplan = :pryFechainiplan")
+    , @NamedQuery(name = "Proyecto.findByPryFechafinplan", query = "SELECT p FROM Proyecto p WHERE p.pryFechafinplan = :pryFechafinplan")
+    , @NamedQuery(name = "Proyecto.findByPryFechainireal", query = "SELECT p FROM Proyecto p WHERE p.pryFechainireal = :pryFechainireal")
+    , @NamedQuery(name = "Proyecto.findByPryFechafinreal", query = "SELECT p FROM Proyecto p WHERE p.pryFechafinreal = :pryFechafinreal")
+    , @NamedQuery(name = "Proyecto.findByPryEstado", query = "SELECT p FROM Proyecto p WHERE p.pryEstado = :pryEstado")
+    , @NamedQuery(name = "Proyecto.findByPryVersion", query = "SELECT p FROM Proyecto p WHERE p.pryVersion = :pryVersion")
+    , @NamedQuery(name = "Proyecto.findByPryPorcentaje", query = "SELECT p FROM Proyecto p WHERE p.pryPorcentaje = :pryPorcentaje")})
 public class Proyecto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,46 +61,49 @@ public class Proyecto implements Serializable {
     @Column(name = "PRY_ID")
     private Long pryId;
     @Basic(optional = false)
-    @Column(name = "PRY_NombreProyecto")
-    private String pRYNombreProyecto;
+    @Column(name = "PRY_NOMBREPROYECTO")
+    private String pryNombreproyecto;
     @Basic(optional = false)
-    @Column(name = "PRY_NomPat")
-    private String pRYNomPat;
+    @Column(name = "PRY_NOMPAT")
+    private String pryNompat;
     @Basic(optional = false)
-    @Column(name = "PRY_NomLiderUs")
-    private String pRYNomLiderUs;
+    @Column(name = "PRY_NOMLIDERUS")
+    private String pryNomliderus;
     @Basic(optional = false)
-    @Column(name = "PRY_NomLiderTec")
-    private String pRYNomLiderTec;
+    @Column(name = "PRY_NOMLIDERTEC")
+    private String pryNomlidertec;
     @Basic(optional = false)
-    @Column(name = "PRY_CorreoPat")
-    private String pRYCorreoPat;
+    @Column(name = "PRY_CORREOPAT")
+    private String pryCorreopat;
     @Basic(optional = false)
-    @Column(name = "PRY_CorreoLU")
-    private String pRYCorreoLU;
+    @Column(name = "PRY_CORREOLU")
+    private String pryCorreolu;
     @Basic(optional = false)
-    @Column(name = "PRY_CorreoLT")
-    private String pRYCorreoLT;
+    @Column(name = "PRY_CORREOLT")
+    private String pryCorreolt;
     @Basic(optional = false)
-    @Column(name = "PRY_FechaIniPlan")
+    @Column(name = "PRY_FECHAINIPLAN")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date pRYFechaIniPlan;
+    private Date pryFechainiplan;
     @Basic(optional = false)
-    @Column(name = "PRY_FechaFinPlan")
+    @Column(name = "PRY_FECHAFINPLAN")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date pRYFechaFinPlan;
-    @Column(name = "PRY_FechaIniReal")
+    private Date pryFechafinplan;
+    @Column(name = "PRY_FECHAINIREAL")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date pRYFechaIniReal;
-    @Column(name = "PRY_FechaFinReal")
+    private Date pryFechainireal;
+    @Column(name = "PRY_FECHAFINREAL")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date pRYFechaFinReal;
+    private Date pryFechafinreal;
     @Basic(optional = false)
-    @Column(name = "PRY_Estado")
-    private String pRYEstado;
+    @Column(name = "PRY_ESTADO")
+    private String pryEstado;
     @Basic(optional = false)
-    @Column(name = "PRY_Version")
-    private Long pRYVersion;
+    @Column(name = "PRY_VERSION")
+    private Long pryVersion;
+    @Basic(optional = false)
+    @Column(name = "PRY_PORCENTAJE")
+    private double pryPorcentaje;
     @OneToMany(mappedBy = "pryId", fetch = FetchType.LAZY)
     private List<Seguimiento> seguimientoList;
     @OneToMany(mappedBy = "pryId", fetch = FetchType.LAZY)
@@ -110,44 +112,45 @@ public class Proyecto implements Serializable {
     public Proyecto() {
     }
 
-    public Proyecto(ProyectoDto ProyectoDto) {
+    public Proyecto(Long pryId) {
+        this.pryId = pryId;
+    }
+public Proyecto(ProyectoDto ProyectoDto) {
         this.pryId = ProyectoDto.getPryId();
         actualizarProyecto(ProyectoDto);
     }
 
     public void actualizarProyecto(ProyectoDto ProyectoDto) {
-        this.pRYNombreProyecto = ProyectoDto.getpRYNombreProyecto();
-        this.pRYNomPat = ProyectoDto.getpRYNomPat();
-        this.pRYNomLiderUs = ProyectoDto.getpRYNomLiderUs();
-        this.pRYNomLiderTec = ProyectoDto.getpRYNomLiderTec();
-        this.pRYCorreoPat = ProyectoDto.getpRYCorreoPat();
-        this.pRYCorreoLU = ProyectoDto.getpRYCorreoLU();
-        this.pRYCorreoLT = ProyectoDto.getpRYCorreoLT();
-        this.pRYFechaIniPlan = Date.from(ProyectoDto.getpRYFechaIniPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        this.pRYFechaFinPlan = Date.from(ProyectoDto.getpRYFechaFinPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        this.pRYEstado = ProyectoDto.getpRYEstado();
-        this.pRYVersion = ProyectoDto.getPryVersion();
-        this.pRYFechaIniReal = Date.from(ProyectoDto.getpRYFechaIniReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        this.pRYFechaFinReal = Date.from(ProyectoDto.getpRYFechaFinReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.pryNombreproyecto= ProyectoDto.getpRYNombreProyecto();
+        this.pryNompat = ProyectoDto.getpRYNomPat();
+        this.pryNomliderus = ProyectoDto.getpRYNomLiderUs();
+        this.pryNomlidertec = ProyectoDto.getpRYNomLiderTec();
+        this.pryCorreopat = ProyectoDto.getpRYCorreoPat();
+        this.pryCorreolu = ProyectoDto.getpRYCorreoLU();
+        this.pryCorreolt = ProyectoDto.getpRYCorreoLT();
+        this.pryFechainiplan = Date.from(ProyectoDto.getpRYFechaIniPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.pryFechafinplan = Date.from(ProyectoDto.getpRYFechaFinPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.pryEstado = ProyectoDto.getpRYEstado();
+        this.pryVersion = ProyectoDto.getPryVersion();
+        this.pryFechainireal = Date.from(ProyectoDto.getpRYFechaIniReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.pryFechafinreal = Date.from(ProyectoDto.getpRYFechaFinReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.pryPorcentaje = ProyectoDto.getPryPorcentaje();
     }
 
-    public Proyecto(Long pryId) {
+    public Proyecto(Long pryId, String pryNombreproyecto, String pryNompat, String pryNomliderus, String pryNomlidertec, String pryCorreopat, String pryCorreolu, String pryCorreolt, Date pryFechainiplan, Date pryFechafinplan, String pryEstado, Long pryVersion, double pryPorcentaje) {
         this.pryId = pryId;
-    }
-
-    public Proyecto(Long pryId, String pRYNombreProyecto, String pRYNomPat, String pRYNomLiderUs, String pRYNomLiderTec, String pRYCorreoPat, String pRYCorreoLU, String pRYCorreoLT, Date pRYFechaIniPlan, Date pRYFechaFinPlan, String pRYEstado, Long pRYVersion) {
-        this.pryId = pryId;
-        this.pRYNombreProyecto = pRYNombreProyecto;
-        this.pRYNomPat = pRYNomPat;
-        this.pRYNomLiderUs = pRYNomLiderUs;
-        this.pRYNomLiderTec = pRYNomLiderTec;
-        this.pRYCorreoPat = pRYCorreoPat;
-        this.pRYCorreoLU = pRYCorreoLU;
-        this.pRYCorreoLT = pRYCorreoLT;
-        this.pRYFechaIniPlan = pRYFechaIniPlan;
-        this.pRYFechaFinPlan = pRYFechaFinPlan;
-        this.pRYEstado = pRYEstado;
-        this.pRYVersion = pRYVersion;
+        this.pryNombreproyecto = pryNombreproyecto;
+        this.pryNompat = pryNompat;
+        this.pryNomliderus = pryNomliderus;
+        this.pryNomlidertec = pryNomlidertec;
+        this.pryCorreopat = pryCorreopat;
+        this.pryCorreolu = pryCorreolu;
+        this.pryCorreolt = pryCorreolt;
+        this.pryFechainiplan = pryFechainiplan;
+        this.pryFechafinplan = pryFechafinplan;
+        this.pryEstado = pryEstado;
+        this.pryVersion = pryVersion;
+        this.pryPorcentaje = pryPorcentaje;
     }
 
     public Long getPryId() {
@@ -158,108 +161,116 @@ public class Proyecto implements Serializable {
         this.pryId = pryId;
     }
 
-    public String getPRYNombreProyecto() {
-        return pRYNombreProyecto;
+    public String getPryNombreproyecto() {
+        return pryNombreproyecto;
     }
 
-    public void setPRYNombreProyecto(String pRYNombreProyecto) {
-        this.pRYNombreProyecto = pRYNombreProyecto;
+    public void setPryNombreproyecto(String pryNombreproyecto) {
+        this.pryNombreproyecto = pryNombreproyecto;
     }
 
-    public String getPRYNomPat() {
-        return pRYNomPat;
+    public String getPryNompat() {
+        return pryNompat;
     }
 
-    public void setPRYNomPat(String pRYNomPat) {
-        this.pRYNomPat = pRYNomPat;
+    public void setPryNompat(String pryNompat) {
+        this.pryNompat = pryNompat;
     }
 
-    public String getPRYNomLiderUs() {
-        return pRYNomLiderUs;
+    public String getPryNomliderus() {
+        return pryNomliderus;
     }
 
-    public void setPRYNomLiderUs(String pRYNomLiderUs) {
-        this.pRYNomLiderUs = pRYNomLiderUs;
+    public void setPryNomliderus(String pryNomliderus) {
+        this.pryNomliderus = pryNomliderus;
     }
 
-    public String getPRYNomLiderTec() {
-        return pRYNomLiderTec;
+    public String getPryNomlidertec() {
+        return pryNomlidertec;
     }
 
-    public void setPRYNomLiderTec(String pRYNomLiderTec) {
-        this.pRYNomLiderTec = pRYNomLiderTec;
+    public void setPryNomlidertec(String pryNomlidertec) {
+        this.pryNomlidertec = pryNomlidertec;
     }
 
-    public String getPRYCorreoPat() {
-        return pRYCorreoPat;
+    public String getPryCorreopat() {
+        return pryCorreopat;
     }
 
-    public void setPRYCorreoPat(String pRYCorreoPat) {
-        this.pRYCorreoPat = pRYCorreoPat;
+    public void setPryCorreopat(String pryCorreopat) {
+        this.pryCorreopat = pryCorreopat;
     }
 
-    public String getPRYCorreoLU() {
-        return pRYCorreoLU;
+    public String getPryCorreolu() {
+        return pryCorreolu;
     }
 
-    public void setPRYCorreoLU(String pRYCorreoLU) {
-        this.pRYCorreoLU = pRYCorreoLU;
+    public void setPryCorreolu(String pryCorreolu) {
+        this.pryCorreolu = pryCorreolu;
     }
 
-    public String getPRYCorreoLT() {
-        return pRYCorreoLT;
+    public String getPryCorreolt() {
+        return pryCorreolt;
     }
 
-    public void setPRYCorreoLT(String pRYCorreoLT) {
-        this.pRYCorreoLT = pRYCorreoLT;
+    public void setPryCorreolt(String pryCorreolt) {
+        this.pryCorreolt = pryCorreolt;
     }
 
-    public Date getPRYFechaIniPlan() {
-        return pRYFechaIniPlan;
+    public Date getPryFechainiplan() {
+        return pryFechainiplan;
     }
 
-    public void setPRYFechaIniPlan(Date pRYFechaIniPlan) {
-        this.pRYFechaIniPlan = pRYFechaIniPlan;
+    public void setPryFechainiplan(Date pryFechainiplan) {
+        this.pryFechainiplan = pryFechainiplan;
     }
 
-    public Date getPRYFechaFinPlan() {
-        return pRYFechaFinPlan;
+    public Date getPryFechafinplan() {
+        return pryFechafinplan;
     }
 
-    public void setPRYFechaFinPlan(Date pRYFechaFinPlan) {
-        this.pRYFechaFinPlan = pRYFechaFinPlan;
+    public void setPryFechafinplan(Date pryFechafinplan) {
+        this.pryFechafinplan = pryFechafinplan;
     }
 
-    public Date getPRYFechaIniReal() {
-        return pRYFechaIniReal;
+    public Date getPryFechainireal() {
+        return pryFechainireal;
     }
 
-    public void setPRYFechaIniReal(Date pRYFechaIniReal) {
-        this.pRYFechaIniReal = pRYFechaIniReal;
+    public void setPryFechainireal(Date pryFechainireal) {
+        this.pryFechainireal = pryFechainireal;
     }
 
-    public Date getPRYFechaFinReal() {
-        return pRYFechaFinReal;
+    public Date getPryFechafinreal() {
+        return pryFechafinreal;
     }
 
-    public void setPRYFechaFinReal(Date pRYFechaFinReal) {
-        this.pRYFechaFinReal = pRYFechaFinReal;
+    public void setPryFechafinreal(Date pryFechafinreal) {
+        this.pryFechafinreal = pryFechafinreal;
     }
 
-    public String getPRYEstado() {
-        return pRYEstado;
+    public String getPryEstado() {
+        return pryEstado;
     }
 
-    public void setPRYEstado(String pRYEstado) {
-        this.pRYEstado = pRYEstado;
+    public void setPryEstado(String pryEstado) {
+        this.pryEstado = pryEstado;
     }
 
-    public Long getPRYVersion() {
-        return pRYVersion;
+    public Long getPryVersion() {
+        return pryVersion;
     }
 
-    public void setPRYVersion(Long pRYVersion) {
-        this.pRYVersion = pRYVersion;
+    public void setPryVersion(Long pryVersion) {
+        this.pryVersion = pryVersion;
+    }
+
+    public double getPryPorcentaje() {
+        return pryPorcentaje;
+    }
+
+    public void setPryPorcentaje(double pryPorcentaje) {
+        this.pryPorcentaje = pryPorcentaje;
     }
 
     @XmlTransient
@@ -304,5 +315,5 @@ public class Proyecto implements Serializable {
     public String toString() {
         return "cr.ac.una.admproyectos.model.Proyecto[ pryId=" + pryId + " ]";
     }
-
+    
 }

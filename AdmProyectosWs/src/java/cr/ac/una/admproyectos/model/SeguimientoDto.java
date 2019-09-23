@@ -28,16 +28,25 @@ public class SeguimientoDto {
     private LocalDate sEGFecha;
     private double sEGAvance;
     private Long SegVersion;
-    
+    private String SegDescripcion;
     public SeguimientoDto(){
         
     }
     
     public SeguimientoDto(Seguimiento seguimiento){
         this.segId= seguimiento.getSegId();
-        this.sEGFecha = seguimiento.getSEGFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
-        this.sEGAvance = seguimiento.getSEGAvance();
-        this.SegVersion = seguimiento.getSEGVersion();
+        this.sEGFecha = seguimiento.getSegFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
+        this.sEGAvance = seguimiento.getSegAvance();
+        this.SegVersion = seguimiento.getSegVersion();
+        this.SegDescripcion = seguimiento.getSegDescripcion();
+    }
+
+    public String getSegDescripcion() {
+        return SegDescripcion;
+    }
+
+    public void setSegDescripcion(String SegDescripcion) {
+        this.SegDescripcion = SegDescripcion;
     }
 
     public Long getSegVersion() {
