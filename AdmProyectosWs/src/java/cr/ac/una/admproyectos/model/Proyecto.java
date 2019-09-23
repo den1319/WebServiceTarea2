@@ -6,9 +6,12 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -128,12 +131,16 @@ public Proyecto(ProyectoDto ProyectoDto) {
         this.pryCorreopat = ProyectoDto.getpRYCorreoPat();
         this.pryCorreolu = ProyectoDto.getpRYCorreoLU();
         this.pryCorreolt = ProyectoDto.getpRYCorreoLT();
-        this.pryFechainiplan = Date.from(ProyectoDto.getpRYFechaIniPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        this.pryFechafinplan = Date.from(ProyectoDto.getpRYFechaFinPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        LocalDate fechaIniPlan = LocalDate.parse(ProyectoDto.getpRYFechaIniPlan(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate fechaFinPlan = LocalDate.parse(ProyectoDto.getpRYFechaFinPlan(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate fechaIniReal = LocalDate.parse(ProyectoDto.getpRYFechaIniReal(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate fechaFinReal = LocalDate.parse(ProyectoDto.getpRYFechaFinReal(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.pryFechainiplan = Date.from(fechaIniPlan.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.pryFechafinplan = Date.from(fechaFinPlan.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         this.pryEstado = ProyectoDto.getpRYEstado();
         this.pryVersion = ProyectoDto.getPryVersion();
-        this.pryFechainireal = Date.from(ProyectoDto.getpRYFechaIniReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        this.pryFechafinreal = Date.from(ProyectoDto.getpRYFechaFinReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.pryFechainireal = Date.from(fechaIniReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.pryFechafinreal = Date.from(fechaFinReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         this.pryPorcentaje = ProyectoDto.getPryPorcentaje();
     }
 
