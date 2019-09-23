@@ -170,4 +170,32 @@ public class WS {
         }
     }
 
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "getAdministradores")
+    public Respuesta getAdministradores(@WebParam(name = "cedula") String cedula, @WebParam(name = "nombre") String nombre, @WebParam(name = "apellido") String apellido) {
+        try{
+            Respuesta respuesta = AdminService.getAdministradoresFiltro(cedula,nombre,apellido);
+            return respuesta;
+        }catch(Exception ex){
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Error obteniendo los Administradore", "GetAdministradoresFiltro" + ex.getMessage());
+        }
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "getAdmins")
+    public Respuesta getAdmins() {
+        try{
+            Respuesta respuesta = AdminService.getAdministradores();
+            return respuesta;
+        }catch(Exception ex){
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Error obteniendo los Administradore", "GetAdministradores" + ex.getMessage());
+        }
+    }
+    
+    
+
 }

@@ -58,9 +58,9 @@ public class AdministradorService {
     public Respuesta getAdministradoresFiltro(String cedula, String nombre, String pApellido) {
         try {
             Query qryEmpleado = em.createNamedQuery("Administrador.findByCedulaNombrePapellido", Administrador.class);
-            qryEmpleado.setParameter("cedula", "%"+cedula+"%");
-            qryEmpleado.setParameter("nombre", "%"+nombre+"%");
-            qryEmpleado.setParameter("pApellido", "%"+pApellido+"%");
+            qryEmpleado.setParameter("admCedula", "%"+cedula+"%");
+            qryEmpleado.setParameter("admNombre", "%"+nombre+"%");
+            qryEmpleado.setParameter("admPapellido", "%"+pApellido+"%");
             List<Administrador> administradores = qryEmpleado.getResultList();
             List<AdministradorDto> administradoresDto = new ArrayList<>();
             for (Administrador administrador : administradores) {
@@ -80,13 +80,7 @@ public class AdministradorService {
     public Respuesta getAdministradores() {
         try {
             Query qryAdministradores = em.createNamedQuery("Administrador.findAll", Administrador.class);
-            List<Administrador> Administradores = qryAdministradores.getResultList();
-            List<AdministradorDto> AdministradoresDto = new ArrayList<>();
-            for (Administrador Administradores1 : Administradores) {
-                AdministradoresDto.add(new AdministradorDto(Administradores1));
-            }
-
-            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Administrador", AdministradoresDto);
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Administrador", this.convertirLista((List<Administrador>)qryAdministradores.getResultList()));
 
         } catch (NoResultException ex) {
             return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen Administradors con los criterios ingresados.", "getAdministradores NoResultException");
@@ -143,6 +137,19 @@ public class AdministradorService {
             }
             Logger.getLogger(AdministradorService.class.getName()).log(Level.SEVERE, "Ocurrio un error al guardar el Administrador.", ex);
             return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO,"Ocurrio un error al eliminar el Administrador.", "EliminarAdministrador " + ex.getMessage());
+        }
+    }
+    
+    public List<AdministradorDto> convertirLista(List<Administrador> administradores){
+        if(!administradores.isEmpty()){
+            List<AdministradorDto> admins = new ArrayList<AdministradorDto>();
+            for(Administrador admin : administradores){
+                    //admproyectos.model.AdministradorDto administradorDto = new admproyectos.model.AdministradorDto(admin);
+                    admins.add(new AdministradorDto(admin));
+            }
+            return admins;
+        }else{
+            return null;
         }
     }
 }
