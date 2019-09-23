@@ -35,16 +35,16 @@ public class ActividadService {
     private EntityManager em;
     private EntityTransaction et;
     
-    public Respuesta getActividads() {
+    public Respuesta getActividades() {
         try {
-            Query qryActividads = em.createNamedQuery("Actividad.findAll", Actividad.class);
-            List<Actividad> Actividads = qryActividads.getResultList();
-            List<ActividadDto> ActividadsDto = new ArrayList<>();
-            for (Actividad Actividads1 : Actividads) {
-                ActividadsDto.add(new ActividadDto(Actividads1));
+            Query qryActividades = em.createNamedQuery("Actividad.findAll", Actividad.class);
+            List<Actividad> Actividades = qryActividades.getResultList();
+            List<ActividadDto> ActividadesDto = new ArrayList<>();
+            for (Actividad Actividads1 : Actividades) {
+                ActividadesDto.add(new ActividadDto(Actividads1));
             }
 
-            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Actividads", ActividadsDto);
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Actividad", ActividadesDto);
 
         } catch (NoResultException ex) {
             return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen Actividades con los criterios ingresados.", "getActividads NoResultException");
