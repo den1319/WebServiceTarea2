@@ -43,7 +43,7 @@ public class SeguimientoService {
                 SeguimientosDto.add(new SeguimientoDto(Seguimientos1));
             }
 
-            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Seguimientos", SeguimientosDto);
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Seguimiento", SeguimientosDto);
 
         } catch (NoResultException ex) {
             return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen Seguimientos con los criterios ingresados.", "getSeguimientos NoResultException");

@@ -43,7 +43,7 @@ public class ProyectoService {
                 ProyectosDto.add(new ProyectoDto(Proyectos1));
             }
 
-            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Proyectos", ProyectosDto);
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Proyecto", ProyectosDto);
 
         } catch (NoResultException ex) {
             return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen Proyectos con los criterios ingresados.", "getProyectos NoResultException");
