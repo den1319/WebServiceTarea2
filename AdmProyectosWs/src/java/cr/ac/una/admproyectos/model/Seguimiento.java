@@ -6,7 +6,9 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -72,17 +74,21 @@ public class Seguimiento implements Serializable {
     public Seguimiento(Long segId) {
         this.segId = segId;
     }
-public Seguimiento(SeguimientoDto SeguimientoDto){
-       this.segId = SeguimientoDto.getSegId();
-       actualizarSeguimiento(SeguimientoDto);
-       
-   }
-   public void actualizarSeguimiento(SeguimientoDto seguimientoDto){
-       this.segFecha = Date.from(seguimientoDto.getsEGFecha().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+
+    public Seguimiento(SeguimientoDto SeguimientoDto) {
+        this.segId = SeguimientoDto.getSegId();
+        actualizarSeguimiento(SeguimientoDto);
+
+    }
+
+    public void actualizarSeguimiento(SeguimientoDto seguimientoDto) {
+        LocalDate SegFecha = LocalDate.parse(seguimientoDto.getsEGFecha(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.segFecha = Date.from(SegFecha.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         this.segAvance = seguimientoDto.getsEGAvance();
-        this.segVersion =seguimientoDto.getSegVersion();
+        this.segVersion = seguimientoDto.getSegVersion();
         this.segDescripcion = seguimientoDto.getSegDescripcion();
-   }
+    }
+
     public Seguimiento(Long segId, Date segFecha, double segAvance, Long segVersion, String segDescripcion) {
         this.segId = segId;
         this.segFecha = segFecha;
@@ -163,5 +169,5 @@ public Seguimiento(SeguimientoDto SeguimientoDto){
     public String toString() {
         return "cr.ac.una.admproyectos.model.Seguimiento[ segId=" + segId + " ]";
     }
-    
+
 }

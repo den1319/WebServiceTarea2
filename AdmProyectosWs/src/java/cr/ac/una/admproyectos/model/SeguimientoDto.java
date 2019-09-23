@@ -24,8 +24,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 public class SeguimientoDto {
     private Long segId;
-    @XmlJavaTypeAdapter(LocalDateAdapter.class)
-    private LocalDate sEGFecha;
+    private String sEGFecha;
     private double sEGAvance;
     private Long SegVersion;
     private String SegDescripcion;
@@ -35,7 +34,7 @@ public class SeguimientoDto {
     
     public SeguimientoDto(Seguimiento seguimiento){
         this.segId= seguimiento.getSegId();
-        this.sEGFecha = seguimiento.getSegFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
+        this.sEGFecha = seguimiento.getSegFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
         this.sEGAvance = seguimiento.getSegAvance();
         this.SegVersion = seguimiento.getSegVersion();
         this.SegDescripcion = seguimiento.getSegDescripcion();
@@ -65,11 +64,11 @@ public class SeguimientoDto {
         this.segId = segId;
     }
 
-    public LocalDate getsEGFecha() {
+    public String getsEGFecha() {
         return sEGFecha;
     }
 
-    public void setsEGFecha(LocalDate sEGFecha) {
+    public void setsEGFecha(String sEGFecha) {
         this.sEGFecha = sEGFecha;
     }
 

@@ -31,14 +31,10 @@ public class ProyectoDto {
     private String pRYCorreoPat;
     private String pRYCorreoLU;
     private String pRYCorreoLT;
-    @XmlJavaTypeAdapter(LocalDateAdapter.class)
-    private LocalDate pRYFechaIniPlan;
-    @XmlJavaTypeAdapter(LocalDateAdapter.class)
-    private LocalDate pRYFechaFinPlan;
-    @XmlJavaTypeAdapter(LocalDateAdapter.class)
-    private LocalDate pRYFechaIniReal;
-    @XmlJavaTypeAdapter(LocalDateAdapter.class)
-    private LocalDate pRYFechaFinReal;
+    private String pRYFechaIniPlan;
+    private String pRYFechaFinPlan;
+    private String pRYFechaIniReal;
+    private String pRYFechaFinReal;
     private String pRYEstado;
     private Long PryVersion;
     private double PryPorcentaje;
@@ -54,10 +50,10 @@ public class ProyectoDto {
         this.pRYCorreoPat = proyecto.getPryCorreopat();
         this.pRYCorreoLU = proyecto.getPryCorreolu();
         this.pRYCorreoLT = proyecto.getPryCorreolt();
-        this.pRYFechaIniPlan = proyecto.getPryFechainiplan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.pRYFechaFinPlan = proyecto.getPryFechafinplan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.pRYFechaIniReal = proyecto.getPryFechainireal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.pRYFechaFinReal = proyecto.getPryFechafinplan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.pRYFechaIniPlan = proyecto.getPryFechainiplan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
+        this.pRYFechaFinPlan = proyecto.getPryFechafinplan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
+        this.pRYFechaIniReal = proyecto.getPryFechainireal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
+        this.pRYFechaFinReal = proyecto.getPryFechafinreal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
         this.pRYEstado = proyecto.getPryEstado();
         this.PryVersion = proyecto.getPryVersion();
         this.PryPorcentaje = proyecto.getPryPorcentaje();
@@ -143,35 +139,35 @@ public class ProyectoDto {
         this.pRYCorreoLT = pRYCorreoLT;
     }
 
-    public LocalDate getpRYFechaIniPlan() {
+    public String getpRYFechaIniPlan() {
         return pRYFechaIniPlan;
     }
 
-    public void setpRYFechaIniPlan(LocalDate pRYFechaIniPlan) {
+    public void setpRYFechaIniPlan(String pRYFechaIniPlan) {
         this.pRYFechaIniPlan = pRYFechaIniPlan;
     }
 
-    public LocalDate getpRYFechaFinPlan() {
+    public String getpRYFechaFinPlan() {
         return pRYFechaFinPlan;
     }
 
-    public void setpRYFechaFinPlan(LocalDate pRYFechaFinPlan) {
+    public void setpRYFechaFinPlan(String pRYFechaFinPlan) {
         this.pRYFechaFinPlan = pRYFechaFinPlan;
     }
 
-    public LocalDate getpRYFechaIniReal() {
+    public String getpRYFechaIniReal() {
         return pRYFechaIniReal;
     }
 
-    public void setpRYFechaIniReal(LocalDate pRYFechaIniReal) {
+    public void setpRYFechaIniReal(String pRYFechaIniReal) {
         this.pRYFechaIniReal = pRYFechaIniReal;
     }
 
-    public LocalDate getpRYFechaFinReal() {
+    public String getpRYFechaFinReal() {
         return pRYFechaFinReal;
     }
 
-    public void setpRYFechaFinReal(LocalDate pRYFechaFinReal) {
+    public void setpRYFechaFinReal(String pRYFechaFinReal) {
         this.pRYFechaFinReal = pRYFechaFinReal;
     }
 

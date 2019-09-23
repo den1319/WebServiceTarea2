@@ -6,7 +6,9 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -118,10 +120,14 @@ public class Actividad implements Serializable {
         this.actDescripcion = ActividadDto.getaCTDescripcion();
         this.actNomencargado = ActividadDto.getaCTNomEncargado();
         this.actEstado = ActividadDto.getaCTEstado();
-        this.actFechainiplan = Date.from(ActividadDto.getaCTFechaIniPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        this.actFechafinplan = Date.from(ActividadDto.getaCTFechaFinPlan().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());;
-        this.actFechainireal = Date.from(ActividadDto.getaCTFechaIniReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        this.actFechafinreal = Date.from(ActividadDto.getaCTFechaFinReal().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        LocalDate FechaIniPlan = LocalDate.parse(ActividadDto.getaCTFechaIniPlan(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate FechaIniReal = LocalDate.parse(ActividadDto.getaCTFechaIniReal(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate FechaFinPlan = LocalDate.parse(ActividadDto.getaCTFechaFinPlan(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate FechaFinReal = LocalDate.parse(ActividadDto.getaCTFechaFinReal(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.actFechainiplan = Date.from(FechaIniPlan.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.actFechafinplan = Date.from(FechaFinPlan.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());;
+        this.actFechainireal = Date.from(FechaIniReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        this.actFechafinreal = Date.from(FechaFinReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         this.actVersion = ActividadDto.getActVersion();
         this.actCorreoencargado = ActividadDto.getaCTCorreoEncargado();
         this.actOrden = ActividadDto.getaCTOrden();
