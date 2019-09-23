@@ -39,8 +39,8 @@ public class AdministradorService {
     public Respuesta validarAdministrador(String usuario, String contrasena) { 
         try {
             Query qryActividad = em.createNamedQuery("Administrador.findByUsuClave", Administrador.class);
-            qryActividad.setParameter("aDMUsuario", usuario);
-            qryActividad.setParameter("aDMContrasena", contrasena);
+            qryActividad.setParameter("admUsuario", usuario);
+            qryActividad.setParameter("admContrasena", contrasena);
 
             return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Administrador", new AdministradorDto((Administrador) qryActividad.getSingleResult()));
 
