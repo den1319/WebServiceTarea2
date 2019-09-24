@@ -6,6 +6,7 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -19,6 +20,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -54,6 +57,13 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Proyecto.findByPryVersion", query = "SELECT p FROM Proyecto p WHERE p.pryVersion = :pryVersion")
     , @NamedQuery(name = "Proyecto.findByPryPorcentaje", query = "SELECT p FROM Proyecto p WHERE p.pryPorcentaje = :pryPorcentaje")})
 public class Proyecto implements Serializable {
+
+    @Basic(optional = false)
+    @Column(name = "PRY_VERSION")
+    private Long pryVersion;
+    @JoinColumn(name = "ADM_ID", referencedColumnName = "ADM_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Administrador admId;
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -101,9 +111,6 @@ public class Proyecto implements Serializable {
     @Basic(optional = false)
     @Column(name = "PRY_ESTADO")
     private String pryEstado;
-    @Basic(optional = false)
-    @Column(name = "PRY_VERSION")
-    private Long pryVersion;
     @Basic(optional = false)
     @Column(name = "PRY_PORCENTAJE")
     private double pryPorcentaje;
@@ -321,6 +328,15 @@ public Proyecto(ProyectoDto ProyectoDto) {
     @Override
     public String toString() {
         return "cr.ac.una.admproyectos.model.Proyecto[ pryId=" + pryId + " ]";
+    }
+
+
+    public Administrador getAdmId() {
+        return admId;
+    }
+
+    public void setAdmId(Administrador admId) {
+        this.admId = admId;
     }
     
 }

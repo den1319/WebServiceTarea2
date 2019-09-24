@@ -6,18 +6,23 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.QueryHint;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -42,6 +47,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Administrador.findByCedulaNombrePapellido", query = "SELECT a FROM Administrador a WHERE UPPER(a.admNombre) like :admNombre and UPPER(a.admCedula) like :admCedula and UPPER(a.admPapellido) like :admPapellido", hints = @QueryHint(name = "eclipselink.refresh", value = "true"))
 })
 public class Administrador implements Serializable {
+
+    @Basic(optional = false)
+    @Column(name = "ADM_VERSION")
+    private Long admVersion;
+    @OneToMany(mappedBy = "admId", fetch = FetchType.LAZY)
+    private List<Proyecto> proyectoList;
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -75,9 +86,6 @@ public class Administrador implements Serializable {
     @Basic(optional = false)
     @Column(name = "ADM_ESTADO")
     private String admEstado;
-    @Basic(optional = false)
-    @Column(name = "ADM_VERSION")
-    private Long admVersion;
 
     public Administrador() {
     }
@@ -217,6 +225,15 @@ public class Administrador implements Serializable {
     @Override
     public String toString() {
         return "cr.ac.una.admproyectos.model.Administrador[ admId=" + admId + " ]";
+    }
+
+    @XmlTransient
+    public List<Proyecto> getProyectoList() {
+        return proyectoList;
+    }
+
+    public void setProyectoList(List<Proyecto> proyectoList) {
+        this.proyectoList = proyectoList;
     }
     
 }
