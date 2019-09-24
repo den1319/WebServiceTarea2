@@ -16,6 +16,7 @@ import cr.ac.una.admproyectos.service.ProyectoService;
 import cr.ac.una.admproyectos.service.SeguimientoService;
 import cr.ac.una.admproyectos.util.CodigoRespuesta;
 import cr.ac.una.admproyectos.util.Respuesta;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -42,6 +43,8 @@ public class WS {
 
     /**
      * Web service operation
+     * @param AdministradorDto
+     * @return 
      */
     @WebMethod(operationName = "GuardarAministrador")
     public Respuesta GuardarAministrador(@WebParam(name = "AdministradorDto") AdministradorDto AdministradorDto) {
@@ -55,6 +58,8 @@ public class WS {
 
     /**
      * Web service operation
+     * @param ID
+     * @return 
      */
     @WebMethod(operationName = "EliminarAdministrador")
     public Respuesta EliminarAdministrador(@WebParam(name = "ID") long ID) {
@@ -68,6 +73,8 @@ public class WS {
 
     /**
      * Web service operation
+     * @param ProyectoDto
+     * @return 
      */
     @WebMethod(operationName = "GuardarProyecto")
     public Respuesta GuardarProyecto(@WebParam(name = "ProyectoDto") ProyectoDto ProyectoDto) {
@@ -81,6 +88,8 @@ public class WS {
 
     /**
      * Web service operation
+     * @param ID
+     * @return 
      */
     @WebMethod(operationName = "EliminarProyecto")
     public Respuesta EliminarProyecto(@WebParam(name = "ID") long ID) {
@@ -94,6 +103,8 @@ public class WS {
 
     /**
      * Web service operation
+     * @param SeguimientoDto
+     * @return 
      */
     @WebMethod(operationName = "GuardarSeguimiento")
     public Respuesta GuardarSeguimiento(@WebParam(name = "SeguimientoDto") SeguimientoDto SeguimientoDto) {
@@ -107,6 +118,8 @@ public class WS {
 
     /**
      * Web service operation
+     * @param ID
+     * @return 
      */
     @WebMethod(operationName = "EliminarSeguimiento")
     public Respuesta EliminarSeguimiento(@WebParam(name = "ID") long ID) {
@@ -120,6 +133,8 @@ public class WS {
 
     /**
      * Web service operation
+     * @param ActividadDto
+     * @return 
      */
     @WebMethod(operationName = "GuardarActividad")
     public Respuesta GuardarActividad(@WebParam(name = "ActividadDto") ActividadDto ActividadDto) {
@@ -133,6 +148,8 @@ public class WS {
 
     /**
      * Web service operation
+     * @param ID
+     * @return 
      */
     @WebMethod(operationName = "EliminarActividad")
     public Respuesta EliminarActividad(@WebParam(name = "ID") long ID) {
@@ -146,6 +163,9 @@ public class WS {
 
     /**
      * Web service operation
+     * @param usuario
+     * @param contrasena
+     * @return 
      */
     @WebMethod(operationName = "getAdmin")
     public Respuesta getAdmin(@WebParam(name = "usuario") String usuario, @WebParam(name = "contrasena") String contrasena) {
@@ -159,40 +179,32 @@ public class WS {
 
     /**
      * Web service operation
+     * @param cedula
+     * @param nombre
+     * @param pApellido
+     * @return 
      */
     @WebMethod(operationName = "GetAdministradoresFiltro")
-    public Respuesta GetAdministradoresFiltro(@WebParam(name = "cedula") String cedula, @WebParam(name = "nombre") String nombre, @WebParam(name = "pApellido") String pApellido) {
+    public List<AdministradorDto> GetAdministradoresFiltro(@WebParam(name = "cedula") String cedula, @WebParam(name = "nombre") String nombre, @WebParam(name = "pApellido") String pApellido) {
         try{
-            Respuesta respuesta = AdminService.getAdministradoresFiltro(cedula, nombre, pApellido);
-            return respuesta;
+            return AdminService.getAdministradoresFiltro(cedula, nombre, pApellido);
         }catch(Exception ex){
-            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Error obteniendo los Administradore", "GetAdministradoresFiltro" + ex.getMessage());
+            return null;
         }
     }
 
     /**
      * Web service operation
-     */
-    @WebMethod(operationName = "getAdministradores")
-    public Respuesta getAdministradores(@WebParam(name = "cedula") String cedula, @WebParam(name = "nombre") String nombre, @WebParam(name = "apellido") String apellido) {
-        try{
-            Respuesta respuesta = AdminService.getAdministradoresFiltro(cedula,nombre,apellido);
-            return respuesta;
-        }catch(Exception ex){
-            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Error obteniendo los Administradore", "GetAdministradoresFiltro" + ex.getMessage());
-        }
-    }
-
-    /**
-     * Web service operation
+     * @return 
      */
     @WebMethod(operationName = "getAdmins")
-    public Respuesta getAdmins() {
+    public List<AdministradorDto> getAdmins() {
+        System.out.println("asfasfasgaga");
         try{
-            Respuesta respuesta = AdminService.getAdministradores();
-            return respuesta;
+            return AdminService.getAdministradores();
         }catch(Exception ex){
-            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Error obteniendo los Administradore", "GetAdministradores" + ex.getMessage());
+            return null;
+            //return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Error obteniendo los Administradore", "GetAdministradores" + ex.getMessage());
         }
     }
     

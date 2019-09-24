@@ -55,38 +55,39 @@ public class AdministradorService {
         }
     }
     
-    public Respuesta getAdministradoresFiltro(String cedula, String nombre, String pApellido) {
+    public List<AdministradorDto> getAdministradoresFiltro(String cedula, String nombre, String pApellido) {
         try {
-            Query qryEmpleado = em.createNamedQuery("Administrador.findByCedulaNombrePapellido", Administrador.class);
-            qryEmpleado.setParameter("admCedula", "%"+cedula+"%");
-            qryEmpleado.setParameter("admNombre", "%"+nombre+"%");
-            qryEmpleado.setParameter("admPapellido", "%"+pApellido+"%");
-            List<Administrador> administradores = qryEmpleado.getResultList();
-            List<AdministradorDto> administradoresDto = new ArrayList<>();
-            for (Administrador administrador : administradores) {
-                administradoresDto.add(new AdministradorDto(administrador));
+            Query qryAdministradores = em.createNamedQuery("Administrador.findByCedulaNombrePapellido", Administrador.class);
+            qryAdministradores.setParameter("admCedula", "%"+cedula+"%");
+            qryAdministradores.setParameter("admNombre", "%"+nombre+"%");
+            qryAdministradores.setParameter("admPapellido", "%"+pApellido+"%");
+            List<AdministradorDto> administradores = new ArrayList<>();
+            for(Object admin :qryAdministradores.getResultList()){
+                administradores.add(new AdministradorDto((Administrador)admin));
             }
-
-            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Administrador", administradoresDto);
-
-        } catch (NoResultException ex) {
-            return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen administradores con los criterios ingresados.", "getAdministradores NoResultException");
+            
+            return administradores;
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "Ocurrio un error al consultar el administrador.", ex);
-            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el administrador.", "getAdministrador " + ex.getMessage());
+            return null;
         }
     }
     
-    public Respuesta getAdministradores() {
+    public List<AdministradorDto> getAdministradores() {
         try {
             Query qryAdministradores = em.createNamedQuery("Administrador.findAll", Administrador.class);
-            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Administrador", this.convertirLista((List<Administrador>)qryAdministradores.getResultList()));
-
-        } catch (NoResultException ex) {
-            return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No existen Administradors con los criterios ingresados.", "getAdministradores NoResultException");
+            List<AdministradorDto> admins = new ArrayList<>();
+            for(Object admin :qryAdministradores.getResultList()){
+                System.out.println("ASDASFASFASF");
+                admins.add(new AdministradorDto((Administrador)admin));
+            }
+            
+            return admins;
+            //return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Administrador", admins);    
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "Ocurrio un error al consultar el Administrador.", ex);
-            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el Administrador.", "getAdministradores " + ex.getMessage());
+            return null;
+//return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el Administrador.", "getAdministradores " + ex.getMessage());
         }
     }
     
