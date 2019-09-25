@@ -19,11 +19,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *
  * @author gera1
  */
-
-@XmlRootElement(name="ProyectoDto")
+@XmlRootElement(name = "ProyectoDto")
 @XmlAccessorType(XmlAccessType.FIELD)
 
 public class ProyectoDto {
+
     private Long pryId;
     private String pRYNombreProyecto;
     private String pRYNomPat;
@@ -42,7 +42,8 @@ public class ProyectoDto {
     private AdministradorDto AdmId;
     private List<Actividad> actividadList;
     private List<Seguimiento> seguimientoList;
-    public ProyectoDto(){
+
+    public ProyectoDto() {
     }
 
     public List<Actividad> getActividadList() {
@@ -68,8 +69,8 @@ public class ProyectoDto {
     public void setAdmId(AdministradorDto AdmId) {
         this.AdmId = AdmId;
     }
-    
-    public ProyectoDto(Proyecto proyecto){
+
+    public ProyectoDto(Proyecto proyecto) {
         this.pryId = proyecto.getPryId();
         this.pRYNombreProyecto = proyecto.getPryNombreproyecto();
         this.pRYNomPat = proyecto.getPryNompat();
@@ -80,7 +81,18 @@ public class ProyectoDto {
         this.pRYCorreoLT = proyecto.getPryCorreolt();
         this.pRYFechaIniPlan = proyecto.getPryFechainiplan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
         this.pRYFechaFinPlan = proyecto.getPryFechafinplan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
-        this.pRYFechaIniReal = proyecto.getPryFechainireal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
+        if (proyecto.getPryFechainireal() != null) {
+            this.pRYFechaIniReal = proyecto.getPryFechainireal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
+        }
+        else{
+            this.pRYFechaIniReal = null;
+        }
+        if (proyecto.getPryFechafinreal() != null) {
+            this.pRYFechaFinReal = proyecto.getPryFechafinreal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
+        }
+        else{
+            this.pRYFechaFinReal = null;
+        }
         this.pRYFechaFinReal = proyecto.getPryFechafinreal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
         this.pRYEstado = proyecto.getPryEstado();
         this.PryVersion = proyecto.getPryVersion();
@@ -214,6 +226,5 @@ public class ProyectoDto {
     public String toString() {
         return "ProyectoDto{" + "pryId=" + pryId + ", pRYNombreProyecto=" + pRYNombreProyecto + ", pRYNomPat=" + pRYNomPat + ", pRYNomLiderUs=" + pRYNomLiderUs + ", pRYNomLiderTec=" + pRYNomLiderTec + ", pRYCorreoPat=" + pRYCorreoPat + ", pRYCorreoLU=" + pRYCorreoLU + ", pRYCorreoLT=" + pRYCorreoLT + ", pRYFechaIniPlan=" + pRYFechaIniPlan + ", pRYFechaFinPlan=" + pRYFechaFinPlan + ", pRYFechaIniReal=" + pRYFechaIniReal + ", pRYFechaFinReal=" + pRYFechaFinReal + ", pRYEstado=" + pRYEstado + '}';
     }
-    
-    
+
 }

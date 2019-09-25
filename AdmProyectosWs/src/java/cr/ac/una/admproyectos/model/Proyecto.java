@@ -144,14 +144,22 @@ public class Proyecto implements Serializable {
         this.pryCorreolt = ProyectoDto.getpRYCorreoLT();
         LocalDate fechaIniPlan = LocalDate.parse(ProyectoDto.getpRYFechaIniPlan(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate fechaFinPlan = LocalDate.parse(ProyectoDto.getpRYFechaFinPlan(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        LocalDate fechaIniReal = LocalDate.parse(ProyectoDto.getpRYFechaIniReal(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        LocalDate fechaFinReal = LocalDate.parse(ProyectoDto.getpRYFechaFinReal(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        if (ProyectoDto.getpRYFechaIniReal() != null) {
+            LocalDate fechaIniReal = LocalDate.parse(ProyectoDto.getpRYFechaIniReal(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            this.pryFechainireal = Date.from(fechaIniReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        } else {
+            this.pryFechainireal = null;
+        }
+        if (ProyectoDto.getpRYFechaFinReal() != null) {
+            LocalDate fechaFinReal = LocalDate.parse(ProyectoDto.getpRYFechaFinReal(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            this.pryFechafinreal = Date.from(fechaFinReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        } else {
+            this.pryFechafinreal = null;
+        }
         this.pryFechainiplan = Date.from(fechaIniPlan.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         this.pryFechafinplan = Date.from(fechaFinPlan.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         this.pryEstado = ProyectoDto.getpRYEstado();
         this.pryVersion = ProyectoDto.getPryVersion();
-        this.pryFechainireal = Date.from(fechaIniReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        this.pryFechafinreal = Date.from(fechaFinReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         this.pryPorcentaje = ProyectoDto.getPryPorcentaje();
         this.admId = new Administrador(ProyectoDto.getAdmId());
     }
