@@ -215,7 +215,7 @@ public class WS {
     @WebMethod(operationName = "GetProyectosFiltro")
     public List<ProyectoDto> GetProyectosFiltro(@WebParam(name = "nombre") String nombre, @WebParam(name = "patrocinador") String patrocinador) {
         try{
-            return ProyectoService.getProyectosFiltro(nombre, patrocinador);
+            return ProyectoService.getProyectosFiltro(nombre, patrocinador);//
         }catch(Exception ex){
             return null;
         }
@@ -230,7 +230,7 @@ public class WS {
     @WebMethod(operationName = "GetActividadesFiltro")
     public List<ActividadDto> GetActividadesFiltro(@WebParam(name = "encargado") String encargado, @WebParam(name = "descripcion") String descripcion) {
         try{
-            return ActividadService.getActividadesFiltro(encargado, descripcion);
+            return ActividadService.getActividadesFiltro(encargado, descripcion);//
         }catch(Exception ex){
             return null;
         }
@@ -244,7 +244,7 @@ public class WS {
     @WebMethod(operationName = "GetSeguimientosFiltro")
     public List<SeguimientoDto> GetSeguimientosFiltro(@WebParam(name = "descripcion") String descripcion) {
         try{
-            return SeguimientoService.getSeguimientosFiltro(descripcion);
+            return SeguimientoService.getSeguimientosFiltro(descripcion);//
         }catch(Exception ex){
             return null;
         }
