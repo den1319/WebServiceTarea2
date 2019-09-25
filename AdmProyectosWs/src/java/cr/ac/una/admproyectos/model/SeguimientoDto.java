@@ -28,8 +28,17 @@ public class SeguimientoDto {
     private double sEGAvance;
     private Long SegVersion;
     private String SegDescripcion;
+    private ProyectoDto proyectoDto;
     public SeguimientoDto(){
         
+    }
+
+    public ProyectoDto getProyectoDto() {
+        return proyectoDto;
+    }
+
+    public void setProyectoDto(ProyectoDto proyectoDto) {
+        this.proyectoDto = proyectoDto;
     }
     
     public SeguimientoDto(Seguimiento seguimiento){
@@ -38,6 +47,7 @@ public class SeguimientoDto {
         this.sEGAvance = seguimiento.getSegAvance();
         this.SegVersion = seguimiento.getSegVersion();
         this.SegDescripcion = seguimiento.getSegDescripcion();
+        this.proyectoDto = new ProyectoDto(seguimiento.getPryId());
     }
 
     public String getSegDescripcion() {

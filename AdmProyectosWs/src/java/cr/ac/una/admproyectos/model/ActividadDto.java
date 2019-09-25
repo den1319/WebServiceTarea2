@@ -26,7 +26,7 @@ public class ActividadDto {
     private String aCTCorreoEncargado;
     private Long aCTOrden;
     private Long ActVersion;
-    
+    private ProyectoDto proyectoDto;
     public ActividadDto(){
     }
     
@@ -42,6 +42,15 @@ public class ActividadDto {
         this.aCTCorreoEncargado = actividad.getActCorreoencargado();
         this.aCTOrden = actividad.getActOrden();
         this.ActVersion = actividad.getActVersion();
+        this.proyectoDto = new ProyectoDto(actividad.getPryId());
+    }
+
+    public ProyectoDto getProyectoDto() {
+        return proyectoDto;
+    }
+
+    public void setProyectoDto(ProyectoDto proyectoDto) {
+        this.proyectoDto = proyectoDto;
     }
 
     public Long getActVersion() {

@@ -87,6 +87,7 @@ public class Seguimiento implements Serializable {
         this.segAvance = seguimientoDto.getsEGAvance();
         this.segVersion = seguimientoDto.getSegVersion();
         this.segDescripcion = seguimientoDto.getSegDescripcion();
+        this.pryId = new Proyecto(seguimientoDto.getProyectoDto());
     }
 
     public Seguimiento(Long segId, Date segFecha, double segAvance, Long segVersion, String segDescripcion) {

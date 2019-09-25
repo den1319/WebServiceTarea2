@@ -134,6 +134,7 @@ public class Actividad implements Serializable {
         this.actVersion = ActividadDto.getActVersion();
         this.actCorreoencargado = ActividadDto.getaCTCorreoEncargado();
         this.actOrden = ActividadDto.getaCTOrden();
+        this.pryId = new Proyecto(ActividadDto.getProyectoDto());
     }
 
     public Long getActId() {

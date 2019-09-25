@@ -39,7 +39,7 @@ public class ProyectoDto {
     private String pRYEstado;
     private Long PryVersion;
     private double PryPorcentaje;
-    private Administrador AdmId;
+    private AdministradorDto AdmId;
     private List<Actividad> actividadList;
     private List<Seguimiento> seguimientoList;
     public ProyectoDto(){
@@ -61,11 +61,11 @@ public class ProyectoDto {
         this.seguimientoList = seguimientoList;
     }
 
-    public Administrador getAdmId() {
+    public AdministradorDto getAdmId() {
         return AdmId;
     }
 
-    public void setAdmId(Administrador AdmId) {
+    public void setAdmId(AdministradorDto AdmId) {
         this.AdmId = AdmId;
     }
     
@@ -85,7 +85,7 @@ public class ProyectoDto {
         this.pRYEstado = proyecto.getPryEstado();
         this.PryVersion = proyecto.getPryVersion();
         this.PryPorcentaje = proyecto.getPryPorcentaje();
-        this.AdmId = proyecto.getAdmId();
+        this.AdmId = new AdministradorDto(proyecto.getAdmId());
         this.actividadList = proyecto.getActividadList();
         this.seguimientoList = proyecto.getSeguimientoList();
     }

@@ -128,13 +128,14 @@ public class Proyecto implements Serializable {
     public Proyecto(Long pryId) {
         this.pryId = pryId;
     }
-public Proyecto(ProyectoDto ProyectoDto) {
+
+    public Proyecto(ProyectoDto ProyectoDto) {
         this.pryId = ProyectoDto.getPryId();
         actualizarProyecto(ProyectoDto);
     }
 
     public void actualizarProyecto(ProyectoDto ProyectoDto) {
-        this.pryNombreproyecto= ProyectoDto.getpRYNombreProyecto();
+        this.pryNombreproyecto = ProyectoDto.getpRYNombreProyecto();
         this.pryNompat = ProyectoDto.getpRYNomPat();
         this.pryNomliderus = ProyectoDto.getpRYNomLiderUs();
         this.pryNomlidertec = ProyectoDto.getpRYNomLiderTec();
@@ -152,7 +153,7 @@ public Proyecto(ProyectoDto ProyectoDto) {
         this.pryFechainireal = Date.from(fechaIniReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         this.pryFechafinreal = Date.from(fechaFinReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         this.pryPorcentaje = ProyectoDto.getPryPorcentaje();
-        this.admId = ProyectoDto.getAdmId();
+        this.admId = new Administrador(ProyectoDto.getAdmId());
     }
 
     public Proyecto(Long pryVersion, Administrador admId, Long pryId, String pryNombreproyecto, String pryNompat, String pryNomliderus, String pryNomlidertec, String pryCorreopat, String pryCorreolu, String pryCorreolt, Date pryFechainiplan, Date pryFechafinplan, Date pryFechainireal, Date pryFechafinreal, String pryEstado, double pryPorcentaje, List<Seguimiento> seguimientoList, List<Actividad> actividadList) {
@@ -175,9 +176,6 @@ public Proyecto(ProyectoDto ProyectoDto) {
         this.seguimientoList = seguimientoList;
         this.actividadList = actividadList;
     }
-
-   
-    
 
     public Long getPryId() {
         return pryId;
@@ -342,7 +340,6 @@ public Proyecto(ProyectoDto ProyectoDto) {
         return "cr.ac.una.admproyectos.model.Proyecto[ pryId=" + pryId + " ]";
     }
 
-
     public Administrador getAdmId() {
         return admId;
     }
@@ -350,5 +347,5 @@ public Proyecto(ProyectoDto ProyectoDto) {
     public void setAdmId(Administrador admId) {
         this.admId = admId;
     }
-    
+
 }
