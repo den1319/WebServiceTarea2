@@ -9,6 +9,7 @@ import cr.ac.una.admproyectos.util.LocalDateAdapter;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,7 +39,34 @@ public class ProyectoDto {
     private String pRYEstado;
     private Long PryVersion;
     private double PryPorcentaje;
+    private Administrador AdmId;
+    private List<Actividad> actividadList;
+    private List<Seguimiento> seguimientoList;
     public ProyectoDto(){
+    }
+
+    public List<Actividad> getActividadList() {
+        return actividadList;
+    }
+
+    public void setActividadList(List<Actividad> actividadList) {
+        this.actividadList = actividadList;
+    }
+
+    public List<Seguimiento> getSeguimientoList() {
+        return seguimientoList;
+    }
+
+    public void setSeguimientoList(List<Seguimiento> seguimientoList) {
+        this.seguimientoList = seguimientoList;
+    }
+
+    public Administrador getAdmId() {
+        return AdmId;
+    }
+
+    public void setAdmId(Administrador AdmId) {
+        this.AdmId = AdmId;
     }
     
     public ProyectoDto(Proyecto proyecto){
@@ -57,6 +85,9 @@ public class ProyectoDto {
         this.pRYEstado = proyecto.getPryEstado();
         this.PryVersion = proyecto.getPryVersion();
         this.PryPorcentaje = proyecto.getPryPorcentaje();
+        this.AdmId = proyecto.getAdmId();
+        this.actividadList = proyecto.getActividadList();
+        this.seguimientoList = proyecto.getSeguimientoList();
     }
 
     public double getPryPorcentaje() {

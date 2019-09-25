@@ -149,9 +149,12 @@ public Proyecto(ProyectoDto ProyectoDto) {
         this.pryFechainireal = Date.from(fechaIniReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         this.pryFechafinreal = Date.from(fechaFinReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         this.pryPorcentaje = ProyectoDto.getPryPorcentaje();
+        this.admId = ProyectoDto.getAdmId();
     }
 
-    public Proyecto(Long pryId, String pryNombreproyecto, String pryNompat, String pryNomliderus, String pryNomlidertec, String pryCorreopat, String pryCorreolu, String pryCorreolt, Date pryFechainiplan, Date pryFechafinplan, String pryEstado, Long pryVersion, double pryPorcentaje) {
+    public Proyecto(Long pryVersion, Administrador admId, Long pryId, String pryNombreproyecto, String pryNompat, String pryNomliderus, String pryNomlidertec, String pryCorreopat, String pryCorreolu, String pryCorreolt, Date pryFechainiplan, Date pryFechafinplan, Date pryFechainireal, Date pryFechafinreal, String pryEstado, double pryPorcentaje, List<Seguimiento> seguimientoList, List<Actividad> actividadList) {
+        this.pryVersion = pryVersion;
+        this.admId = admId;
         this.pryId = pryId;
         this.pryNombreproyecto = pryNombreproyecto;
         this.pryNompat = pryNompat;
@@ -162,10 +165,16 @@ public Proyecto(ProyectoDto ProyectoDto) {
         this.pryCorreolt = pryCorreolt;
         this.pryFechainiplan = pryFechainiplan;
         this.pryFechafinplan = pryFechafinplan;
+        this.pryFechainireal = pryFechainireal;
+        this.pryFechafinreal = pryFechafinreal;
         this.pryEstado = pryEstado;
-        this.pryVersion = pryVersion;
         this.pryPorcentaje = pryPorcentaje;
+        this.seguimientoList = seguimientoList;
+        this.actividadList = actividadList;
     }
+
+   
+    
 
     public Long getPryId() {
         return pryId;
