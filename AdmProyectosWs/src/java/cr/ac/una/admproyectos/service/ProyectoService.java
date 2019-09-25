@@ -53,6 +53,23 @@ public class ProyectoService {
         }
     }
     
+    public List<ProyectoDto> getProyectosFiltro(String nombre, String patrocinador){
+        try {
+            Query qryProyectos = em.createNamedQuery("Proyecto.findByNombrePatrocinador", Proyecto.class);
+            qryProyectos.setParameter("nombre", "%"+nombre+"%");
+            qryProyectos.setParameter("patrocinador", "%"+patrocinador+"%");
+            List<ProyectoDto> proyectos = new ArrayList<>();
+            for(Object proyecto :qryProyectos.getResultList()){
+                proyectos.add(new ProyectoDto((Proyecto)proyecto));
+            }
+            
+            return proyectos;
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el proyecto.", ex);
+            return null;
+        }
+    }
+    
     public Respuesta guardarProyecto(ProyectoDto ProyectoDto) {
         try {
             Proyecto Proyecto;

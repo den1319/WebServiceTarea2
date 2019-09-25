@@ -54,6 +54,23 @@ public class ActividadService {
         }
     }
     
+    public List<ActividadDto> getActividadesFiltro(String encargado, String descripcion){
+        try {
+            Query qryActividades = em.createNamedQuery("Actividad.findByEncargadoDescripcion", Actividad.class);
+            qryActividades.setParameter("actNomencargado", "%"+encargado+"%");
+            qryActividades.setParameter("actDescripcion", "%"+descripcion+"%");
+            List<ActividadDto> actividades = new ArrayList<>();
+            for(Object actividad :qryActividades.getResultList()){
+                actividades.add(new ActividadDto((Actividad)actividad));
+            }
+            
+            return actividades;
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar la actividad.", ex);
+            return null;
+        }
+    }
+    
     public Respuesta guardarActividad(ActividadDto ActividadDto) {
         try {
             Actividad Actividad;

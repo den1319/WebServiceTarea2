@@ -53,6 +53,22 @@ public class SeguimientoService {
         }
     }
     
+    public List<SeguimientoDto> getSeguimientosFiltro(String descripcion){
+        try {
+            Query qrySeguimientos = em.createNamedQuery("Seguimiento.findBySegDescripcion", Seguimiento.class);
+            qrySeguimientos.setParameter("segDescripcion", "%"+descripcion+"%");
+            List<SeguimientoDto> seguimientos = new ArrayList<>();
+            for(Object seguimiento :qrySeguimientos.getResultList()){
+                seguimientos.add(new SeguimientoDto((Seguimiento)seguimiento));
+            }
+            
+            return seguimientos;
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el seguimiento.", ex);
+            return null;
+        }
+    }
+    
     public Respuesta guardarSeguimiento(SeguimientoDto SeguimientoDto) {
         try {
             Seguimiento Seguimiento;

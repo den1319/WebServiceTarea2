@@ -25,6 +25,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.QueryHint;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -55,7 +56,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Proyecto.findByPryFechafinreal", query = "SELECT p FROM Proyecto p WHERE p.pryFechafinreal = :pryFechafinreal")
     , @NamedQuery(name = "Proyecto.findByPryEstado", query = "SELECT p FROM Proyecto p WHERE p.pryEstado = :pryEstado")
     , @NamedQuery(name = "Proyecto.findByPryVersion", query = "SELECT p FROM Proyecto p WHERE p.pryVersion = :pryVersion")
-    , @NamedQuery(name = "Proyecto.findByPryPorcentaje", query = "SELECT p FROM Proyecto p WHERE p.pryPorcentaje = :pryPorcentaje")})
+    , @NamedQuery(name = "Proyecto.findByPryPorcentaje", query = "SELECT p FROM Proyecto p WHERE p.pryPorcentaje = :pryPorcentaje")
+    , @NamedQuery(name = "Proyecto.findByNombrePatrocinador", query = "SELECT p FROM Proyecto p WHERE UPPER(p.pryNombreproyecto) like :nombre and UPPER(p.pryNompat) like :patrocinador", hints = @QueryHint(name = "eclipselink.refresh", value = "true"))
+})
 public class Proyecto implements Serializable {
 
     @Basic(optional = false)

@@ -199,14 +199,58 @@ public class WS {
      */
     @WebMethod(operationName = "getAdmins")
     public List<AdministradorDto> getAdmins() {
-        System.out.println("asfasfasgaga");
         try{
             return AdminService.getAdministradores();
         }catch(Exception ex){
             return null;
-            //return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Error obteniendo los Administradore", "GetAdministradores" + ex.getMessage());
         }
     }
+
+    /**
+     * Web service operation
+     * @param nombre
+     * @param patrocinador
+     * @return 
+     */
+    @WebMethod(operationName = "GetProyectosFiltro")
+    public List<ProyectoDto> GetProyectosFiltro(@WebParam(name = "nombre") String nombre, @WebParam(name = "patrocinador") String patrocinador) {
+        try{
+            return ProyectoService.getProyectosFiltro(nombre, patrocinador);
+        }catch(Exception ex){
+            return null;
+        }
+    }
+
+    /**
+     * Web service operation
+     * @param encargado
+     * @param descripcion
+     * @return 
+     */
+    @WebMethod(operationName = "GetActividadesFiltro")
+    public List<ActividadDto> GetActividadesFiltro(@WebParam(name = "encargado") String encargado, @WebParam(name = "descripcion") String descripcion) {
+        try{
+            return ActividadService.getActividadesFiltro(encargado, descripcion);
+        }catch(Exception ex){
+            return null;
+        }
+    }
+
+    /**
+     * Web service operation
+     * @param descripcion
+     * @return 
+     */
+    @WebMethod(operationName = "GetSeguimientosFiltro")
+    public List<SeguimientoDto> GetSeguimientosFiltro(@WebParam(name = "descripcion") String descripcion) {
+        try{
+            return SeguimientoService.getSeguimientosFiltro(descripcion);
+        }catch(Exception ex){
+            return null;
+        }
+    }
+    
+    
     
     
 
