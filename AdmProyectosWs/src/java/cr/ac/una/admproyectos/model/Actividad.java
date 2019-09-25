@@ -21,6 +21,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.QueryHint;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -46,7 +47,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Actividad.findByActFechafinreal", query = "SELECT a FROM Actividad a WHERE a.actFechafinreal = :actFechafinreal")
     , @NamedQuery(name = "Actividad.findByActVersion", query = "SELECT a FROM Actividad a WHERE a.actVersion = :actVersion")
     , @NamedQuery(name = "Actividad.findByActCorreoencargado", query = "SELECT a FROM Actividad a WHERE a.actCorreoencargado = :actCorreoencargado")
-    , @NamedQuery(name = "Actividad.findByActOrden", query = "SELECT a FROM Actividad a WHERE a.actOrden = :actOrden")})
+    , @NamedQuery(name = "Actividad.findByActOrden", query = "SELECT a FROM Actividad a WHERE a.actOrden = :actOrden")
+    , @NamedQuery(name = "Actividad.findByEncargadoDescripcion", query = "SELECT a FROM Actividad a WHERE UPPER(a.actNomencargado) like :actNomencargado and UPPER(a.actDescripcion) like :actDescripcion", hints = @QueryHint(name = "eclipselink.refresh", value = "true"))
+})
 public class Actividad implements Serializable {
 
     private static final long serialVersionUID = 1L;

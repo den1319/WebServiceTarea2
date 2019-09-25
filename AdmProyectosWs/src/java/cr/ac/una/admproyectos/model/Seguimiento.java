@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Seguimiento.findBySegFecha", query = "SELECT s FROM Seguimiento s WHERE s.segFecha = :segFecha")
     , @NamedQuery(name = "Seguimiento.findBySegAvance", query = "SELECT s FROM Seguimiento s WHERE s.segAvance = :segAvance")
     , @NamedQuery(name = "Seguimiento.findBySegVersion", query = "SELECT s FROM Seguimiento s WHERE s.segVersion = :segVersion")
-    , @NamedQuery(name = "Seguimiento.findBySegDescripcion", query = "SELECT s FROM Seguimiento s WHERE s.segDescripcion = :segDescripcion")})
+    , @NamedQuery(name = "Seguimiento.findBySegDescripcion", query = "SELECT s FROM Seguimiento s WHERE UPPER(s.segDescripcion) = :segDescripcion")})
 public class Seguimiento implements Serializable {
 
     private static final long serialVersionUID = 1L;

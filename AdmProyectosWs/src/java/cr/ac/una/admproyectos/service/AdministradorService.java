@@ -82,12 +82,10 @@ public class AdministradorService {
                 admins.add(new AdministradorDto((Administrador)admin));
             }
             
-            return admins;
-            //return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "", "Administrador", admins);    
+            return admins;   
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "Ocurrio un error al consultar el Administrador.", ex);
             return null;
-//return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al consultar el Administrador.", "getAdministradores " + ex.getMessage());
         }
     }
     
