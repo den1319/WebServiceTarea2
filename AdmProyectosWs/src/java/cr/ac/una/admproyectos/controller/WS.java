@@ -199,10 +199,12 @@ public class WS {
      */
     @WebMethod(operationName = "getAdmins")
     public List<AdministradorDto> getAdmins() {
+        System.out.println("asfasfasgaga");
         try{
             return AdminService.getAdministradores();
         }catch(Exception ex){
             return null;
+            //return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Error obteniendo los Administradore", "GetAdministradores" + ex.getMessage());
         }
     }
 
@@ -249,7 +251,6 @@ public class WS {
             return null;
         }
     }
-    
     
     
     
