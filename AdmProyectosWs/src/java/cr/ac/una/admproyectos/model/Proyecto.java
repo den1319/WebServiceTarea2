@@ -344,7 +344,7 @@ public class Proyecto implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.admproyectos.model.Proyecto[ pryId=" + pryId + " ]";
+        return  this.pryNombreproyecto;
     }
 
     public Administrador getAdmId() {
