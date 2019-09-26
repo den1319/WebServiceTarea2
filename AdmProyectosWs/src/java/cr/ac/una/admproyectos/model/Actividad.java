@@ -52,6 +52,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 })
 public class Actividad implements Serializable {
 
+    @Basic(optional = false)
+    @Column(name = "ACT_VERSION")
+    private Long actVersion;
+    @Basic(optional = false)
+    @Column(name = "ACT_ORDEN")
+    private Long actOrden;
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -84,14 +91,8 @@ public class Actividad implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date actFechafinreal;
     @Basic(optional = false)
-    @Column(name = "ACT_VERSION")
-    private Long actVersion;
-    @Basic(optional = false)
     @Column(name = "ACT_CORREOENCARGADO")
     private String actCorreoencargado;
-    @Basic(optional = false)
-    @Column(name = "ACT_ORDEN")
-    private Long actOrden;
     @JoinColumn(name = "PRY_ID", referencedColumnName = "PRY_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Proyecto pryId;
@@ -257,5 +258,6 @@ public class Actividad implements Serializable {
     public String toString() {
         return "cr.ac.una.admproyectos.model.Actividad[ actId=" + actId + " ]";
     }
+
     
 }

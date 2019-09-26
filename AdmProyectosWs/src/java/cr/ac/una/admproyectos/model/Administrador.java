@@ -234,5 +234,6 @@ public class Administrador implements Serializable {
     public void setProyectoList(List<Proyecto> proyectoList) {
         this.proyectoList = proyectoList;
     }
+
     
 }

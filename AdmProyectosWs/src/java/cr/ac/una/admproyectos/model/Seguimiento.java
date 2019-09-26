@@ -43,6 +43,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Seguimiento.findBySegDescripcion", query = "SELECT s FROM Seguimiento s WHERE UPPER(s.segDescripcion) = :segDescripcion")})
 public class Seguimiento implements Serializable {
 
+    @Basic(optional = false)
+    @Column(name = "SEG_VERSION")
+    private Long segVersion;
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -58,9 +62,6 @@ public class Seguimiento implements Serializable {
     @Basic(optional = false)
     @Column(name = "SEG_AVANCE")
     private double segAvance;
-    @Basic(optional = false)
-    @Column(name = "SEG_VERSION")
-    private Long segVersion;
     @Basic(optional = false)
     @Column(name = "SEG_DESCRIPCION")
     private String segDescripcion;
@@ -170,5 +171,6 @@ public class Seguimiento implements Serializable {
     public String toString() {
         return "cr.ac.una.admproyectos.model.Seguimiento[ segId=" + segId + " ]";
     }
+
 
 }
