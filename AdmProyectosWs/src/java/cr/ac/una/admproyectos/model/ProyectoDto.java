@@ -93,7 +93,6 @@ public class ProyectoDto {
         else{
             this.pRYFechaFinReal = null;
         }
-        this.pRYFechaFinReal = proyecto.getPryFechafinreal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
         this.pRYEstado = proyecto.getPryEstado();
         this.PryVersion = proyecto.getPryVersion();
         this.PryPorcentaje = proyecto.getPryPorcentaje();
