@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.una.admproyectos.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  *
  * @author gera1
  */
-
 @XmlRootElement(name="AdministradorDto")
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -123,11 +116,9 @@ public class AdministradorDto {
     public void setAdmEstado(String AdmEstado) {
         this.AdmEstado = AdmEstado;
     }
-
     @Override
     public String toString() {
         return "AdministradorDto{" + "admId=" + admId + ", AdmNombre=" + AdmNombre + ", AdmPApellido=" + AdmPApellido + ", AdmSApellido=" + AdmSApellido + ", AdmCedula=" + AdmCedula + ", AdmCorreo=" + AdmCorreo + ", AdmUsuario=" + AdmUsuario + ", AdmContrasena=" + AdmContrasena + ", AdmEstado=" + AdmEstado + '}';
     }
-    
-    
+ 
 }

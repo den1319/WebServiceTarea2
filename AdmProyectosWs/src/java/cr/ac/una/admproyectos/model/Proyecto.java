@@ -31,7 +31,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 /**
  *
  * @author JORDI RODRIGUEZ
@@ -354,6 +353,4 @@ public class Proyecto implements Serializable {
     public void setAdmId(Administrador admId) {
         this.admId = admId;
     }
-
-
 }

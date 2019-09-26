@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
@@ -22,7 +17,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 /**
  *
  * @author JORDI RODRIGUEZ
@@ -207,7 +201,6 @@ public class Administrador implements Serializable {
         hash += (admId != null ? admId.hashCode() : 0);
         return hash;
     }
-
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -220,7 +213,6 @@ public class Administrador implements Serializable {
         }
         return true;
     }
-
     @Override
     public String toString() {
         return "cr.ac.una.admproyectos.model.Administrador[ admId=" + admId + " ]";
@@ -234,6 +226,4 @@ public class Administrador implements Serializable {
     public void setProyectoList(List<Proyecto> proyectoList) {
         this.proyectoList = proyectoList;
     }
-
-    
 }
