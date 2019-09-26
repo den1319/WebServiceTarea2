@@ -1,20 +1,21 @@
 package cr.ac.una.admproyectos.model;
 
-
 import java.time.ZoneId;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 /**
  *
  * @author gera1
  */
-@XmlRootElement(name="ActividadDto")
+@XmlRootElement(name = "ActividadDto")
 @XmlAccessorType(XmlAccessType.FIELD)
 
 public class ActividadDto {
+
     private Long actId;
     private String aCTDescripcion;
     private String aCTNomEncargado;
@@ -27,18 +28,28 @@ public class ActividadDto {
     private Long aCTOrden;
     private Long ActVersion;
     private ProyectoDto proyectoDto;
-    public ActividadDto(){
+
+    public ActividadDto() {
     }
-    
-    public ActividadDto(Actividad actividad){
+
+    public ActividadDto(Actividad actividad) {
         this.actId = actividad.getActId();
         this.aCTDescripcion = actividad.getActDescripcion();
         this.aCTNomEncargado = actividad.getActNomencargado();
         this.aCTEstado = actividad.getActEstado();
-        this.aCTFechaIniPlan = actividad.getActFechainiplan().toInstant().atZone(ZoneId.systemDefault()).toString();
-        this.aCTFechaFinPlan = actividad.getActFechafinplan().toInstant().atZone(ZoneId.systemDefault()).toString();
-        this.aCTFechaIniReal = actividad.getActFechainireal().toInstant().atZone(ZoneId.systemDefault()).toString();
-        this.aCTFechaFinReal = actividad.getActFechafinreal().toInstant().atZone(ZoneId.systemDefault()).toString();
+        this.aCTFechaIniPlan = actividad.getActFechainiplan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
+        this.aCTFechaFinPlan = actividad.getActFechafinplan().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
+        if (actividad.getActFechainireal() != null) {
+            this.aCTFechaIniReal = actividad.getActFechainireal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
+        } else {
+            this.aCTFechaIniReal = null;
+        }
+        if (actividad.getActFechafinreal() != null) {
+            this.aCTFechaFinReal = actividad.getActFechafinreal().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
+        }
+        else{
+            this.aCTFechaFinReal = null;
+        }
         this.aCTCorreoEncargado = actividad.getActCorreoencargado();
         this.aCTOrden = actividad.getActOrden();
         this.ActVersion = actividad.getActVersion();

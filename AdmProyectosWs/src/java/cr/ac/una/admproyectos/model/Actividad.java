@@ -115,6 +115,7 @@ public class Actividad implements Serializable {
         this.actCorreoencargado = actCorreoencargado;
         this.actOrden = actOrden;
     }
+
     public Actividad(ActividadDto ActividadDto) {
         this.actId = ActividadDto.getActId();
         actualizarActividad(ActividadDto);
@@ -124,14 +125,23 @@ public class Actividad implements Serializable {
         this.actDescripcion = ActividadDto.getaCTDescripcion();
         this.actNomencargado = ActividadDto.getaCTNomEncargado();
         this.actEstado = ActividadDto.getaCTEstado();
+        if (ActividadDto.getaCTFechaIniReal() != null) {
+            LocalDate FechaIniReal = LocalDate.parse(ActividadDto.getaCTFechaIniReal(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            this.actFechainireal = Date.from(FechaIniReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        } else {
+            this.actFechainireal = null;
+        }
+        if (ActividadDto.getaCTFechaFinReal() != null) {
+            LocalDate FechaFinReal = LocalDate.parse(ActividadDto.getaCTFechaFinReal(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            this.actFechafinreal = Date.from(FechaFinReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        }
+        else{
+            this.actFechafinreal = null;
+        }
         LocalDate FechaIniPlan = LocalDate.parse(ActividadDto.getaCTFechaIniPlan(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        LocalDate FechaIniReal = LocalDate.parse(ActividadDto.getaCTFechaIniReal(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate FechaFinPlan = LocalDate.parse(ActividadDto.getaCTFechaFinPlan(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        LocalDate FechaFinReal = LocalDate.parse(ActividadDto.getaCTFechaFinReal(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         this.actFechainiplan = Date.from(FechaIniPlan.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         this.actFechafinplan = Date.from(FechaFinPlan.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());;
-        this.actFechainireal = Date.from(FechaIniReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        this.actFechafinreal = Date.from(FechaFinReal.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         this.actVersion = ActividadDto.getActVersion();
         this.actCorreoencargado = ActividadDto.getaCTCorreoEncargado();
         this.actOrden = ActividadDto.getaCTOrden();
@@ -259,5 +269,4 @@ public class Actividad implements Serializable {
         return "cr.ac.una.admproyectos.model.Actividad[ actId=" + actId + " ]";
     }
 
-    
 }
