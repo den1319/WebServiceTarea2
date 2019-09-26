@@ -6,7 +6,6 @@
 package cr.ac.una.admproyectos.model;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
